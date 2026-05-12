@@ -29,7 +29,9 @@ createApp({
       }
     },
     isHexChange: function (isHex) {
+      if (this.isHex === isHex) return
       this.isHex = isHex
+
       if (this.asciiString) {
         if (this.isHex) {
           this.asciiCode = this.asciiCode.split(" ").map(code => parseInt(code).toString(16).toUpperCase()).join(" ")
