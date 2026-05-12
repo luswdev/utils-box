@@ -49,10 +49,10 @@
       <h1 class="text-2xl text-bold mb-5">Explore more tools:</h1>
       <div class="grid grid-cols-3 gap-4">
         <a v-for="link in links" :href="link.url"
-          class="group rounded-md border border-neutral-800 hover:bg-neutral-800">
+          class="group rounded-md border border-neutral-700 bg-neutral-800 hover:border-rose-300 transition-colors duration-200">
           <div class="p-4">
             <h2 class="text-lg font-bold mb-2 group-hover:text-rose-300">
-              <i :class="link.icon"></i>
+               <span class="font-mono text-neutral-400">>_ </span>
               {{ link.title }}
             </h2>
             <p class="text-sm text-neutral-400">{{ link.description }}</p>
@@ -64,6 +64,8 @@
 
   <footer>
     <div class="max-w-screen-lg mx-auto text-center py-4 text-sm text-neutral-500">
+      <a href="https://github.com/luswdev/utils-box" target="_blank" class="hover:text-rose-300 underline">GitHub</a>ㆍ
+      <a href="https://ko-fi.com/luswdev" target="_blank" class="hover:text-rose-300 underline">Sponsor Us</a>ㆍ
       &copy; 2026 LuSkywalker. All rights reserved.
     </div>
   </footer>
