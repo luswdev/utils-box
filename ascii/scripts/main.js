@@ -28,7 +28,8 @@ createApp({
         this.asciiString = this.asciiCode.split(separator).map(code => String.fromCharCode(code)).join("")
       }
     },
-    isHexChange: function () {
+    isHexChange: function (isHex) {
+      this.isHex = isHex
       if (this.asciiString) {
         if (this.isHex) {
           this.asciiCode = this.asciiCode.split(" ").map(code => parseInt(code).toString(16).toUpperCase()).join(" ")
@@ -46,7 +47,7 @@ createApp({
     },
     pushNotification: function (message, type = "success") {
       const notification = document.createElement("div")
-      notification.className = `relative rounded-md bg-neutral-800 border border-neutral-700 p-4 sm:w-80 w-[90%] mx-auto sm:mx-0 shadow-md shadow-neutral-700/50`
+      notification.className = `relative rounded-xl border border-white/10 bg-zinc-900 p-4 sm:w-80 w-[90%] mx-auto sm:mx-0 shadow-[0_0_20px] shadow-zinc-700/50 transition-all transition-discrete`
 
       const notificationContent = document.createElement("div")
       notificationContent.className = "flex justify-between text-sm"
@@ -75,7 +76,7 @@ createApp({
       notification.appendChild(notificationContent)
 
       const progressBar = document.createElement("div")
-      progressBar.className = "absolute bottom-0 left-0 h-1 bg-rose-300 w-full animate-progress"
+      progressBar.className = "absolute bottom-0 left-0 h-1 bg-rose-300/50 w-full animate-progress"
       notification.appendChild(progressBar)
 
       const container = document.getElementById("notifications-container")
