@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>ASCII Converter - Toolbox | LuSkywalker</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+  <meta name="description"
+    content="ASCII converter tool to convert between ASCII strings and ASCII codes in decimal or hexadecimal format.">
+  <meta name="keywords"
+    content="ASCII converter, ASCII string, ASCII code, decimal, hexadecimal, text encoding, text decoding, character encoding, character decoding">
+  <meta name="theme-color" content="#171717" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/7205443a15.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <link rel="stylesheet" href="/utils/styles/main.css?v=2605130009">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TXXFD9KYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-3TXXFD9KYK');
+  </script>
+</head>
+
+<body class="flex flex-col bg-neutral-900 text-white min-h-screen leading-none">
+  <header class="mt-10">
+    <nav class="w-full">
+      <div class="max-w-screen-lg flex flex-col justify-between mx-auto p-4 h-16">
+        <h1 class="flex justify-center">
+          <span class="text-4xl font-mono font-bold whitespace-nowrap mb-1">>_ ASCII Converter</span>
+        </h1>
+        <span class="flex justify-end">
+          <a href="/utils/" class="self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300">more tools...</a>
+        </span>
+      </div>
+    </nav>
+  </header>
+
+  <main id="app" class="mt-28 grow">
+    <div class="main-inner max-w-screen-lg mx-auto px-3">
+      <div class="grid grid-cols-1 gap-4">
+        <div class="group rounded-md border-3 border-neutral-800 p-4">
+          <div class="flex justify-between mb-3">
+            <div class="flex gap-3">
+              <h2 class="text-lg font-bold">ASCII String</h2>
+              <i class="fa-regular fa-copy sm:hidden! group-hover:inline-block! text-neutral-500 cursor-pointer"
+                @click="copy2clipboard(asciiString)"></i>
+            </div>
+          </div>
+          <textarea v-model="asciiString"
+            class="w-full h-32 p-2 bg-neutral-800 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono"
+            placeholder="hello world"></textarea>
+        </div>
+
+        <div class="flex gap-4 justify-center">
+          <button @click="convertToASCII"
+            class="flex gap-2 hover:bg-rose-600/50 text-white font-bold py-2 px-4 rounded-md bg-neutral-800 cursor-pointer">
+            <i class="fa-solid fa-angles-down"></i>
+            <span class="font-light">Convert to ASCII</span>
+          </button>
+          <button @click="convertToString"
+            class="flex gap-2 hover:bg-rose-600/50 text-white font-bold py-2 px-4 rounded-md bg-neutral-800 cursor-pointer">
+            <i class="fa-solid fa-angles-up"></i>
+            <span class="font-light">Convert to String</span>
+          </button>
+        </div>
+
+        <div class="group rounded-md border-3 border-neutral-800 p-4">
+          <div class="flex justify-between mb-3">
+            <div class="flex gap-3">
+              <h2 class="text-lg font-bold">ASCII Code</h2>
+              <i class="fa-regular fa-copy sm:hidden! group-hover:inline-block! text-neutral-500 cursor-pointer"
+                @click="copy2clipboard(asciiCode)"></i>
+            </div>
+            <div>
+              <label for="codeTypeSwitch" class="me-2 align-middle">dec</label>
+              <label class="switch relative inline-block w-12 h-6" for="codeTypeSwitch">
+                <input type="checkbox" class="opacity-0 w-0 h-0" id="codeTypeSwitch" v-model="isHex"
+                  @change="isHexChange">
+                <span
+                  class="slider rounded-full absolute top-0 left-0 right-0 bottom-0 bg-neutral-800 before:content-[''] before:absolute before:top-1 before:left-1 before:w-4 before:h-4 before:bg-white before:rounded-full before:transition-all cursor-pointer"></span>
+              </label>
+              <label for="codeTypeSwitch" class="ms-2 align-middle">hex</label>
+            </div>
+          </div>
+          <textarea v-model="asciiCode"
+            class="w-full h-32 p-2 bg-neutral-800 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono"
+            placeholder="68 65 6C 6C 6F 20 77 6F 72 6C 64"></textarea>
+            <p class="text-sm text-neutral-500 mt-2 leading-4">
+              <i class="fa-solid fa-circle-info text-xs"></i>
+              Accepts the following formats:<br>
+              <ul class="list-disc list-inside text-neutral-500 leading-4 text-sm">
+                <li>Space-separated: <span class="font-mono">68 65 6C 6C 6F</span></li>
+                <li>Comma-separated: <span class="font-mono">68, 65, 6C, 6C, 6F</span></li>
+                <li>Hex with prefix: <span class="font-mono">0x68 0x65 0x6C 0x6C 0x6F</span></li>
+                <li>Hex with prefix and comma: <span class="font-mono">0x68, 0x65, 0x6C, 0x6C, 0x6F</span></li>
+              </ul>
+            </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="max-w-screen-lg mx-auto text-center py-4 text-sm text-neutral-500">
+      &copy; 2026 LuSkywalker. All rights reserved.
+    </div>
+  </footer>
+
+  <div id="notifications-container"
+    class="absolute top-20 sm:right-10 right-0 w-full sm:w-auto flex flex-col gap-4 z-50">
+  </div>
+
+  <script src="scripts/main.js?v=2605130014"></script>
+</body>
+
+</html>
