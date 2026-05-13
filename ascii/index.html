@@ -67,8 +67,8 @@
                 @click="copy2clipboard(asciiString)"></i>
             </div>
           </div>
-          <textarea v-model="asciiString"
-            class="w-full h-56 p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 transition-all"
+          <textarea v-model="asciiString" id="asciiString"
+            class="w-full h-56 p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
             placeholder="hello world"></textarea>
         </div>
 
@@ -105,8 +105,8 @@
               </button>
             </div>
           </div>
-          <textarea v-model="asciiCode"
-            class="w-full h-56 p-2 bg-zinc-800/50  text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 transition-all"
+          <textarea v-model="asciiCode" id="asciiCode"
+            class="w-full h-56 p-2 bg-zinc-800/50  text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
             placeholder="68 65 6C 6C 6F 20 77 6F 72 6C 64"></textarea>
           <div class="text-sm text-neutral-500 mt-2 leading-4.5 font-light">
             <i class="fa-solid fa-circle-info text-xs me-1"></i>
