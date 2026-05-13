@@ -48,8 +48,13 @@
         </h1>
         <span class="flex justify-end">
           <a href="/utils/"
-            class="self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300 transition-all">
-            more tools...
+            class="group self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300">
+            <span
+              class="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 group-hover:before:bg-linear-to-r group-hover:before:from-rose-300 group-hover:before:via-indigo-300 group-hover:before:to-sky-300 before:transition-all before:duration-300 before:w-0 group-hover:before:w-[110%]!">
+              <span class="relative text-white group-hover:text-gray-950 font-light group-hover:font-semibold underline group-hover:no-underline">
+                more tools...
+              </span>
+            </span>
           </a>
         </span>
       </div>
@@ -93,7 +98,8 @@
                 @click="copy2clipboard(asciiString)"></i>
             </div>
           </div>
-          <div class="absolute top-3 right-3 flex gap-1 bg-zinc-900/80 p-1 rounded-full border border-zinc-800 backdrop-blur-sm">
+          <div
+            class="absolute top-3 right-3 flex gap-1 bg-zinc-900/80 p-1 rounded-full border border-zinc-800 backdrop-blur-sm">
             <button @click="isHexChange(false)"
               class="px-3 py-1.5 text-xs font-bold rounded-full transition-all text-zinc-500 hover:text-zinc-300 hover:bg-rose-300/30"
               :class="isHex ? '' : ' bg-zinc-700 text-white! '">
@@ -146,17 +152,17 @@
         </div>
         <div class="flex flex-wrap justify-center gap-4">
           <a href="https://github.com/luswdev/utils-box" target="_blank"
-            class="flex justify-between place-items-center gap-2 font-light p-4 rounded-xl bg-zinc-900/50 text-zinc-200 border bg-zinc-200/5 border-zinc-100/50 hover:border-zinc-100 hover:bg-zinc-200/10 hover:shadow-[0_0_20px] hover:shadow-zinc-200/10 hover:text-zinc-100 cursor-pointer transition-all">
+            class="flex justify-between place-items-center gap-2 font-light px-4 py-3 rounded-xl bg-zinc-900/50 text-zinc-200 border bg-zinc-200/5 border-zinc-100/50 hover:border-zinc-100 hover:bg-zinc-200/10 hover:shadow-[0_0_20px] hover:shadow-zinc-200/10 hover:text-zinc-100 cursor-pointer transition-all">
             <i class="fa-brands fa-github"></i>
             <span class="grow text-center">GitHub</span>
           </a>
           <a href="https://ko-fi.com/luswdev" target="_blank"
-            class="flex justify-between place-items-center gap-2 font-light p-4 rounded-xl text-rose-300 bg-rose-400/5 border border-rose-300/50 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-100 cursor-pointer transition-all">
+            class="flex justify-between place-items-center gap-2 font-light px-4 py-3 rounded-xl text-rose-300 bg-rose-400/5 border border-rose-300/50 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-100 cursor-pointer transition-all">
             <i class="fa-regular fa-heart"></i>
             <span class="grow text-center">Sponsor Us</span>
           </a>
           <a href="mailto:info@lusw.dev" target="_blank"
-            class="flex justify-between place-items-center gap-2 font-light p-4 rounded-xl text-sky-300 bg-sky-400/5 border border-sky-300/50 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px] hover:shadow-sky-400/10 hover:text-zinc-100 cursor-pointer transition-all">
+            class="flex justify-between place-items-center gap-2 font-light px-4 py-3 rounded-xl text-sky-300 bg-sky-400/5 border border-sky-300/50 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px] hover:shadow-sky-400/10 hover:text-zinc-100 cursor-pointer transition-all">
             <i class="fa-regular fa-envelope"></i>
             <span class="grow text-center">Contact Us</span>
           </a>
