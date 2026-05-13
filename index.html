@@ -49,18 +49,36 @@
 
   <main id="app" class="mt-18 grow">
     <div class="main-inner max-w-screen-lg mx-auto px-3">
-      <h1 class="text-2xl text-bold mb-5">Text Decoder/Encoder</h1>
-      <div class="grid sm:grid-cols-3 grid-cols-1 gap-4">
-        <a v-for="link in links" :href="link.url"
-          class="group rounded-md rounded-xl border border-white/10 bg-zinc-900/50 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 transition-colors duration-200">
-          <div class="p-4">
-            <h2 class="text-lg font-bold mb-2 group-hover:text-rose-300">
-              <span class="font-mono text-neutral-400">>_ </span>
-              {{ link.title }}
-            </h2>
-            <p class="text-sm text-neutral-400">{{ link.description }}</p>
+      <div class="flex flex-col gap-y-12">
+        <div v-for="link in links" class="links-group">
+          <h1 class="flex gap-3 text-2xl font-bold mb-5 text-center text-zinc-200/75">
+            <span
+              class="bg-gradient-to-r from-zinc-200/20 from-50% to-transparent to-0% bg-center bg-size-[12px_1.5px] bg-repeat-x grow"></span>
+            <span>{{ link.title }}</span>
+            <span
+              class="bg-gradient-to-r from-zinc-200/20 from-50% to-transparent to-0% bg-center bg-size-[12px_1.5px] bg-repeat-x grow"></span>
+          </h1>
+          <div class="grid sm:grid-cols-3 grid-cols-1 gap-4">
+            <button type="button" v-for="item in link.groups" @click="gotoLink(item.url)"
+              :class="link.border + ' ' + link.background + ' ' + link.shadow + (item.url === '' ? ' disabled' : '')"
+              class="relative group rounded-md rounded-xl border border-white/10 bg-zinc-900/50 opacity-50 not-[.disabled]:opacity-100 hover:not-[.disabled]:shadow-[0_0_20px] shadow-none transition-colors duration-200 cursor-not-allowed not-[.disabled]:cursor-pointer">
+              <div class="p-4 text-start h-full flex flex-col place-items-start">
+                <h2 class="text-lg font-bold mb-2" :class="link.text">
+                  <span class="font-mono text-zinc-400">>_ </span>
+                  {{ item.title }}
+                </h2>
+                <p class="text-sm text-zinc-400 font-light">{{ item.description }}</p>
+              </div>
+              <div v-if="isNew(item.update)" class="new-indicator absolute -top-1 -right-1">
+                <span class="relative flex size-3">
+                  <span
+                    class="absolute inline-flex h-full w-full animate-ping rounded-full" :class="link.indictor[1]"></span>
+                  <span class="relative inline-flex size-3 rounded-full" :class="link.indictor[0]"></span>
+                </span>
+              </div>
+            </button>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </main>
@@ -77,17 +95,17 @@
         </div>
         <div class="flex flex-wrap justify-center gap-4">
           <a href="https://github.com/luswdev/utils-box" target="_blank"
-            class="flex justify-between gap-2 font-light py-4 px-4 w-40 rounded-lg bg-zinc-900/50 text-zinc-200 border bg-zinc-200/5 border-zinc-100/50 hover:border-zinc-100 hover:bg-zinc-200/10 hover:shadow-[0_0_20px] hover:shadow-zinc-200/10 hover:text-zinc-100 hover:font-bold cursor-pointer transition-all">
+            class="flex justify-between place-items-center gap-2 font-light p-4 rounded-xl bg-zinc-900/50 text-zinc-200 border bg-zinc-200/5 border-zinc-100/50 hover:border-zinc-100 hover:bg-zinc-200/10 hover:shadow-[0_0_20px] hover:shadow-zinc-200/10 hover:text-zinc-100 cursor-pointer transition-all">
             <i class="fa-brands fa-github"></i>
             <span class="grow text-center">GitHub</span>
           </a>
           <a href="https://ko-fi.com/luswdev" target="_blank"
-            class="flex justify-between gap-2 font-light py-4 px-4 w-40 rounded-lg text-rose-300 bg-rose-400/5 border border-rose-300/50 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-100 hover:font-bold cursor-pointer transition-all">
+            class="flex justify-between place-items-center gap-2 font-light p-4 rounded-xl text-rose-300 bg-rose-400/5 border border-rose-300/50 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-100 cursor-pointer transition-all">
             <i class="fa-regular fa-heart"></i>
             <span class="grow text-center">Sponsor Us</span>
           </a>
           <a href="mailto:info@lusw.dev" target="_blank"
-            class="flex justify-between gap-2 font-light py-4 px-4 w-40 rounded-lg text-sky-300 bg-sky-400/5 border border-sky-300/50 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px] hover:shadow-sky-400/10 hover:text-zinc-100 hover:font-bold cursor-pointer transition-all">
+            class="flex justify-between place-items-center gap-2 font-light p-4 rounded-xl text-sky-300 bg-sky-400/5 border border-sky-300/50 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px] hover:shadow-sky-400/10 hover:text-zinc-100 cursor-pointer transition-all">
             <i class="fa-regular fa-envelope"></i>
             <span class="grow text-center">Contact Us</span>
           </a>
@@ -99,8 +117,9 @@
     </div>
   </footer>
 
-  <script src="scripts/links.js?v=260512213655"></script>
-  <script src="scripts/main.js?v=260512213655"></script>
+  <script src="scripts/links.js?v=2605131438"></script>
+  <script src="scripts/notification.js?v=2605131210"></script>
+  <script src="scripts/main.js?v=2605131435"></script>
 </body>
 
 </html>
