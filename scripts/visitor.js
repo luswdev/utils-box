@@ -1,4 +1,4 @@
-function getVisitorFromBusuanzi () {
+function getVisitorFromVercount () {
   const busuanzi = document.getElementById('vercount_value_page_pv')
   let count = '0'
   if (busuanzi) {
@@ -9,7 +9,7 @@ function getVisitorFromBusuanzi () {
 }
 
 function createVisitor () {
-  const cnt = getVisitorFromBusuanzi()
+  const cnt = getVisitorFromVercount()
   const visitor = document.getElementById('visitor-container')
   visitor.innerHTML = ''
   visitor.style = ''
@@ -20,7 +20,7 @@ function createVisitor () {
     visitor.appendChild(digit)
   }
 
-  const busuanzi = document.getElementById('vercount_value_page_pv')
-  busuanzi.style = ''
+  const vercount = document.getElementById('vercount_value_page_pv')
+  vercount.style = ''
   return visitor
 }

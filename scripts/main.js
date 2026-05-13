@@ -26,7 +26,7 @@ const vueapp = createApp({
     initNotification()
 
     const updateVisitorCount = setInterval(() => {
-      const visitors = getVisitorFromBusuanzi()
+      const visitors = getVisitorFromVercount()
       if (visitors !== '000000-1') {  // busuanzi has loaded the count
         createVisitor()
         clearInterval(updateVisitorCount)
