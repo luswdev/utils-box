@@ -47,11 +47,11 @@
           </span>
         </h1>
         <span class="flex justify-end">
-          <a href="/utils/"
-            class="group self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300">
+          <a href="/utils/" class="group self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300">
             <span
               class="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 group-hover:before:bg-linear-to-r group-hover:before:from-rose-300 group-hover:before:via-indigo-300 group-hover:before:to-sky-300 before:transition-all before:duration-300 before:w-0 group-hover:before:w-[110%]!">
-              <span class="relative text-white group-hover:text-gray-950 font-light group-hover:font-semibold underline group-hover:no-underline">
+              <span
+                class="relative text-white group-hover:text-gray-950 font-light group-hover:font-semibold underline group-hover:no-underline">
                 more tools...
               </span>
             </span>
@@ -127,12 +127,36 @@
         </div>
 
         <div class="rounded-2xl border border-white/5 bg-zinc-900/50 px-7 py-6">
-          <div class="flex justify-between mb-3">
+          <div class="flex flex-col gap-3 justify-between mb-3">
             <div class="flex gap-3">
               <h2 class="text-lg font-bold">
                 <i class="fa-solid fa-circle-info me-2"></i>
                 Special Characters
               </h2>
+            </div>
+            <div class="overflow-auto">
+              <div class="table sm:w-full w-fit border border-white/10 rounded-lg">
+                <div class="table-header-group text-zinc-300/75">
+                  <div class="table-row">
+                    <div class="table-cell text-left border-b border-zinc-200/10 p-4 pt-3 pb-3 pl-8">Name</div>
+                    <div class="table-cell text-left border-b border-zinc-200/10 p-4 pt-3 pb-3 pl-8">Value</div>
+                    <div class="table-cell text-left border-b border-zinc-200/10 p-4 pt-3 pb-3 pl-8">Remark</div>
+                  </div>
+                </div>
+                <div class="table-row-group text-zinc-300/50 font-light">
+                  <div v-for="char in asciiTable" class="group table-row">
+                    <div
+                      class="table-cell border-b group-last:border-b-0 border-zinc-200/10 group-odd:bg-zinc-600/5 p-4 pt-3 pb-3 pl-8 font-mono">
+                      {{ char.name }}</div>
+                    <div
+                      class="table-cell border-b group-last:border-b-0 border-zinc-200/10 group-odd:bg-zinc-600/5 p-4 pt-3 pb-3 pl-8 font-mono whitespace-nowrap">
+                      0x{{ ('0' + char.value.toString(16)).substr(-2).toUpperCase() }} ({{ char.value }})</div>
+                    <div
+                      class="table-cell border-b group-last:border-b-0 border-zinc-200/10 group-odd:bg-zinc-600/5 p-4 pt-3 pb-3 pl-8 whitespace-nowrap">
+                      {{ char.remark }}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -175,7 +199,8 @@
   </footer>
 
   <script src="/utils/scripts/notification.js?v=2605131502"></script>
-  <script src="scripts/main.js?v=2605131210"></script>
+  <script src="scripts/ascii.js?v=2605131604"></script>
+  <script src="scripts/main.js?v=2605131546"></script>
 </body>
 
 </html>

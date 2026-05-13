@@ -6,6 +6,7 @@ createApp({
       asciiString: "",
       asciiCode: "",
       isHex: true,
+      asciiTable: ASCII_TABLE,
     }
   },
   methods: {
