@@ -3,8 +3,8 @@ const { createApp } = Vue
 createApp({
   data: function () {
     return {
-      asciiString: "",
-      asciiCode: "",
+      asciiString: '',
+      asciiCode: '',
       isHex: true,
       asciiTable: ASCII_TABLE,
     }
@@ -12,21 +12,21 @@ createApp({
   methods: {
     convertToASCII: function () {
       if (this.isHex) {
-        this.asciiCode = this.asciiString.split("").map(char => char.charCodeAt(0).toString(16).toUpperCase()).join(" ")
+        this.asciiCode = this.asciiString.split('').map(char => char.charCodeAt(0).toString(16).toUpperCase()).join(' ')
       } else {
-        this.asciiCode = this.asciiString.split("").map(char => char.charCodeAt(0)).join(" ")
+        this.asciiCode = this.asciiString.split('').map(char => char.charCodeAt(0)).join(' ')
       }
     },
     convertToString: function () {
-      let separator = " "
-      if (this.asciiCode.indexOf(",") !== -1) {
-        separator = ","
+      let separator = ' '
+      if (this.asciiCode.indexOf(',') !== -1) {
+        separator = ','
       }
 
       if (this.isHex) {
-        this.asciiString = this.asciiCode.split(separator).map(code => String.fromCharCode(parseInt(code, 16))).join("")
+        this.asciiString = this.asciiCode.split(separator).map(code => String.fromCharCode(parseInt(code, 16))).join('')
       } else {
-        this.asciiString = this.asciiCode.split(separator).map(code => String.fromCharCode(code)).join("")
+        this.asciiString = this.asciiCode.split(separator).map(code => String.fromCharCode(code)).join('')
       }
     },
     isHexChange: function (isHex) {
@@ -35,17 +35,17 @@ createApp({
 
       if (this.asciiString) {
         if (this.isHex) {
-          this.asciiCode = this.asciiCode.split(" ").map(code => parseInt(code).toString(16).toUpperCase()).join(" ")
+          this.asciiCode = this.asciiCode.split(' ').map(code => parseInt(code).toString(16).toUpperCase()).join(' ')
         } else {
-          this.asciiCode = this.asciiCode.split(" ").map(code => parseInt(code, 16)).join(" ")
+          this.asciiCode = this.asciiCode.split(' ').map(code => parseInt(code, 16)).join(' ')
         }
       }
     },
     copy2clipboard: function (text) {
       navigator.clipboard.writeText(text).then(() => {
-        pushNotification("Copied to clipboard!")
+        pushNotification('Copied to clipboard!')
       }).catch(err => {
-        pushNotification("Failed to copy!", "error")
+        pushNotification('Failed to copy!', 'error')
       })
     },
   },

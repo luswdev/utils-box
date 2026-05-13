@@ -10,7 +10,7 @@ const vueapp = createApp({
   methods: {
     checkLink: function (url) {
       if (!url) {
-        pushNotification("This feature is coming soon!", "error")
+        pushNotification('This feature is coming soon!', 'error')
       }
     },
     isNew: function (update) {

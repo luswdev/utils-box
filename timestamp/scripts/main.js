@@ -31,21 +31,14 @@ createApp({
     },
     copy2clipboard: function (text) {
       navigator.clipboard.writeText(text).then(() => {
-        pushNotification("Copied to clipboard!")
+        pushNotification('Copied to clipboard!')
       }).catch(err => {
-        pushNotification("Failed to copy!", "error")
+        pushNotification('Failed to copy!', 'error')
       })
     },
   },
   created: function () {
     this.inputDatetime = new Date(parseInt(this.inputTimestamp))
-
-    this.inputDatetimeModel.year = this.inputDatetime.getUTCFullYear()
-    this.inputDatetimeModel.month = this.inputDatetime.getUTCMonth() + 1
-    this.inputDatetimeModel.day = this.inputDatetime.getUTCDate()
-    this.inputDatetimeModel.hour = this.inputDatetime.getUTCHours()
-    this.inputDatetimeModel.minute = this.inputDatetime.getUTCMinutes()
-    this.inputDatetimeModel.second = this.inputDatetime.getUTCSeconds()
   },
   mounted: function () {
     initNotification()
@@ -61,6 +54,13 @@ createApp({
   watch: {
     inputDatetime: function (newVal) {
       this.inputDatetimeTemp = newVal
+
+      this.inputDatetimeModel.year = this.inputDatetime.getUTCFullYear()
+      this.inputDatetimeModel.month = this.inputDatetime.getUTCMonth() + 1
+      this.inputDatetimeModel.day = this.inputDatetime.getUTCDate()
+      this.inputDatetimeModel.hour = this.inputDatetime.getUTCHours()
+      this.inputDatetimeModel.minute = this.inputDatetime.getUTCMinutes()
+      this.inputDatetimeModel.second = this.inputDatetime.getUTCSeconds()
     },
     inputDatetimeModel: {
       handler: function (newVal) {
