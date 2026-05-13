@@ -60,10 +60,10 @@
     <div class="max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="main-inner">
       <div class="grid grid-cols-1 gap-4">
         <div class="group rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
-          <div class="flex justify-between mb-3">
+          <div class="flex justify-center text-zinc-200/60 mb-3">
             <div class="flex items-center gap-3">
-              <h2 class="text-lg font-bold">ASCII String</h2>
-              <i class="fa-regular fa-copy sm:hidden! group-hover:inline-block! text-zinc-500/50 hover:text-rose-300 transition-all cursor-pointer"
+              <h2 class="text-lg font-light">ASCII String</h2>
+              <i class="fa-regular fa-copy inline-block text-zinc-500/50 hover:text-rose-300 transition-all cursor-pointer"
                 @click="copy2clipboard(asciiString)"></i>
             </div>
           </div>
@@ -74,36 +74,36 @@
 
         <div class="flex gap-4 justify-center text-zinc-500 my-3">
           <button @click="convertToASCII"
-            class="flex items-center gap-2 font-bold py-2 px-4 rounded-lg bg-zinc-900/50 border border-white/5 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-300 cursor-pointer transition-all">
+            class="flex items-center gap-2 py-2 px-4 rounded-lg bg-zinc-900/50 border border-white/5 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-300 cursor-pointer transition-all">
             <i class="fa-solid fa-angles-down"></i>
-            <span class="font-light">Convert to ASCII</span>
+            <span class="font-semibold">Convert to ASCII</span>
           </button>
           <button @click="convertToString"
-            class="flex items-center gap-2 font-bold py-2 px-4 rounded-lg bg-zinc-900/50 border border-white/5 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-300 cursor-pointer transition-all">
+            class="flex items-center gap-2 py-2 px-4 rounded-lg bg-zinc-900/50 border border-white/5 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-300 cursor-pointer transition-all">
             <i class="fa-solid fa-angles-up"></i>
-            <span class="font-light">Convert to String</span>
+            <span class="font-semibold">Convert to String</span>
           </button>
         </div>
 
-        <div class="group rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
-          <div class="flex justify-between mb-3">
+        <div class="relative group rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
+          <div class="flex justify-center text-zinc-200/60 mb-3">
             <div class="flex items-center gap-3">
-              <h2 class="text-lg font-bold">ASCII Code</h2>
-              <i class="fa-regular fa-copy sm:hidden! group-hover:inline-block! text-zinc-500/50 hover:text-rose-300 transition-all cursor-pointer"
-                @click="copy2clipboard(asciiCode)"></i>
+              <h2 class="text-lg font-light">ASCII String</h2>
+              <i class="fa-regular fa-copy inline-block text-zinc-500/50 hover:text-rose-300 transition-all cursor-pointer"
+                @click="copy2clipboard(asciiString)"></i>
             </div>
-            <div class="flex gap-1 bg-zinc-900/80 p-1 rounded-full border border-zinc-800 backdrop-blur-sm">
-              <button @click="isHexChange(false)"
-                class="px-3 py-1.5 text-xs font-bold rounded-full transition-all text-zinc-500 hover:text-zinc-300 hover:bg-rose-300/30"
-                :class="isHex ? '' : ' bg-zinc-700 text-white! '">
-                Dec
-              </button>
-              <button @click="isHexChange(true)"
-                class="px-3 py-1.5 text-xs font-bold rounded-full transition-all text-zinc-500 hover:text-zinc-300 hover:bg-rose-300/30"
-                :class="isHex ? ' bg-zinc-700 text-white! ' : ''">
-                Hex
-              </button>
-            </div>
+          </div>
+          <div class="absolute top-3 right-3 flex gap-1 bg-zinc-900/80 p-1 rounded-full border border-zinc-800 backdrop-blur-sm">
+            <button @click="isHexChange(false)"
+              class="px-3 py-1.5 text-xs font-bold rounded-full transition-all text-zinc-500 hover:text-zinc-300 hover:bg-rose-300/30"
+              :class="isHex ? '' : ' bg-zinc-700 text-white! '">
+              Dec
+            </button>
+            <button @click="isHexChange(true)"
+              class="px-3 py-1.5 text-xs font-bold rounded-full transition-all text-zinc-500 hover:text-zinc-300 hover:bg-rose-300/30"
+              :class="isHex ? ' bg-zinc-700 text-white! ' : ''">
+              Hex
+            </button>
           </div>
           <textarea v-model="asciiCode" id="asciiCode"
             class="w-full h-56 p-2 bg-zinc-800/50  text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
@@ -138,7 +138,7 @@
     <div class="max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="footer-inner">
       <div class="grid grid-cols-1 gap-2">
         <div class="foot-splitter w-[60%] sm:w-72 mx-auto pb-4">
-          <div class="flex justify-between text-2xl text-neutral-500">
+          <div class="flex justify-between text-2xl text-zinc-500/50">
             <span class="font-mono">*</span>
             <span class="font-mono">*</span>
             <span class="font-mono">*</span>
