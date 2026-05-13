@@ -33,7 +33,10 @@ function pushNotification (message, type = "success") {
   const closeIcon = document.createElement("i")
   closeIcon.className = "fa-solid fa-x text-neutral-500 hover:text-rose-300 cursor-pointer"
   closeIcon.addEventListener("click", () => {
-    notification.remove()
+      notification.classList += " opacity-0"
+      setTimeout(() => {
+        notification.remove()
+      }, 300)
     clearInterval(progressInterval)
   })
 
