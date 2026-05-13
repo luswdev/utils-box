@@ -1,5 +1,5 @@
 function getVisitorFromBusuanzi () {
-  const busuanzi = document.getElementById('busuanzi_value_page_pv')
+  const busuanzi = document.getElementById('vercount_value_page_pv')
   let count = '0'
   if (busuanzi) {
     count = busuanzi.innerText || '0'
@@ -20,7 +20,7 @@ function createVisitor () {
     visitor.appendChild(digit)
   }
 
-  const busuanzi = document.getElementById('busuanzi_container_site_pv')
+  const busuanzi = document.getElementById('vercount_value_page_pv')
   busuanzi.style = ''
   return visitor
 }

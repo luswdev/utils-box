@@ -10,10 +10,10 @@
   <meta name="keywords" content="Unix timestamp, timestamp, date, time, converter">
   <meta name="theme-color" content="#0b0809" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/utils/assets/favicons/apple-touch-icon.png?v=4">
-  <link rel="icon" type="image/png" sizes="32x32" href="/utils/assets/favicons/favicon-32x32.png?v=4">
-  <link rel="icon" type="image/png" sizes="16x16" href="/utils/assets/favicons/favicon-16x16.png?v=4">
-  <link rel="manifest" href="/utils/assets/favicons/site.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=4">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,9 +27,9 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script defer src="https://events.vercount.one/js"></script>
 
-  <link rel="stylesheet" href="/utils/styles/main.css?v=2605131456">
+  <link rel="stylesheet" href="/styles/main.css?v=2605132307">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TXXFD9KYK"></script>
@@ -53,7 +53,7 @@
           </span>
         </h1>
         <span class="flex justify-end">
-          <a href="/utils/" class="group self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300">
+          <a href="/" class="group self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300">
             <span
               class="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 group-hover:before:bg-linear-to-r group-hover:before:from-rose-300 group-hover:before:via-indigo-300 group-hover:before:to-sky-300 group-focus:before:bg-linear-to-r group-focus:before:from-rose-300 group-focus:before:via-indigo-300 group-focus:before:to-sky-300  before:transition-all before:duration-300 before:w-0 group-hover:before:w-[110%]! group-focus:before:w-[110%]!">
               <span
@@ -79,7 +79,7 @@
             </div>
           </div>
           <input type="number" v-model="inputTimestamp" id="inputTimestamp"
-            class="w-full p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
+            class="w-full p-2 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 scheme-dark"
             placeholder="timestamp">
           </input>
         </div>
@@ -106,37 +106,37 @@
                 @click="copy2clipboard(inputDatetime)"></i>
             </div>
           </div>
-          <div class="flex sm:flex-nowrap flex-wrap gap-2 place-items-center">
+          <div class="flex sm:flex-nowrap flex-wrap gap-2 place-items-center scheme-dark">
             <input type="number" id="inputYear" v-model="inputDatetimeModel.year" max="2999" min="1900"
-              class="p-2 shrink w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
+              class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
               placeholder="year">
             </input>
             <span>/</span>
             <input type="number" id="inputMonth" v-model="inputDatetimeModel.month" max="12" min="1"
-              class="p-2 shrink w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
+              class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
               placeholder="month">
             </input>
             <span>/</span>
             <input type="number" id="inputDay" v-model="inputDatetimeModel.day" max="31" min="1"
-              class="p-2 shrink w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
+              class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
               placeholder="day">
             </input>
             <span class="mx-2">&#32;</span>
             <input type="number" id="inputHour" v-model="inputDatetimeModel.hour" max="23" min="0"
-              class="p-2 shrink w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
+              class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
               placeholder="hour">
             </input>
             <span class="mx-2">:</span>
             <input type="number" id="inputMinute" v-model="inputDatetimeModel.minute" max="59" min="0"
-              class="p-2 shrink w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
+              class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
               placeholder="minute">
             </input>
             <span class="mx-2">:</span>
             <input type="number" id="inputSecond" v-model="inputDatetimeModel.second" max="59" min="0"
-              class="p-2 shrink w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
+              class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5"
               placeholder="second">
             </input>
-            <span class=" text-zinc-500/50 hover:text-rose-300 focus:text-rose-300 cursor-pointer" @click="showFullString = !showFullString">
+            <span class="text-zinc-500/50 hover:text-rose-300 focus:text-rose-300 cursor-pointer" @click="showFullString = !showFullString">
               <i class="ms-2 fa-solid fa-pen"></i>
             </span>
           </div>
@@ -212,7 +212,7 @@
             <span class="grow text-center">Contact Us</span>
           </a>
         </div>
-        <div id="busuanzi_container_site_pv" class="hidden"><span id="busuanzi_value_page_pv">-1</span></div>
+        <span id="vercount_value_page_pv" class="hidden">-1</span>
         <div id="visitor-container" class="font-bold gap-0.5 inline-flex justify-center text-zinc-500/60"></div>
         <div class="text-center text-sm text-zinc-500/60 font-light">
           &copy; {{ new Date().getFullYear() }} LuSkywalker {{ version }}. All rights reserved.
@@ -221,8 +221,8 @@
     </div>
   </footer>
 
-  <script src="/utils/scripts/visitor.js?v=2605132045"></script>
-  <script src="/utils/scripts/notification.js?v=2605131738"></script>
+  <script src="/scripts/visitor.js?v=2605132255"></script>
+  <script src="/scripts/notification.js?v=2605131738"></script>
   <script src="scripts/main.js?v=2605131923"></script>
 </body>
 
