@@ -66,7 +66,7 @@
               class="bg-gradient-to-r from-zinc-200/20 from-50% to-transparent to-0% bg-center bg-size-[12px_1.5px] bg-repeat-x grow"></span>
           </h1>
           <div class="grid sm:grid-cols-3 grid-cols-1 gap-4">
-            <button type="button" v-for="item in link.groups" @click="gotoLink(item.url)"
+            <a :href="item.url ? '/' + item.url : null" v-for="item in link.groups" @click="checkLink(item.url)"
               :class="link.border + ' ' + link.background + ' ' + link.shadow + (item.url === '' ? ' disabled' : '')"
               class="relative group rounded-md rounded-xl border border-white/10 bg-zinc-900/50 opacity-50 not-[.disabled]:opacity-100 hover:not-[.disabled]:shadow-[0_0_20px] shadow-none transition-colors duration-200 cursor-not-allowed not-[.disabled]:cursor-pointer">
               <div class="p-4 text-start h-full flex flex-col place-items-start">
@@ -83,7 +83,7 @@
                   <span class="relative inline-flex size-3 rounded-full" :class="link.indictor[0]"></span>
                 </span>
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -129,7 +129,7 @@
   <script src="/scripts/visitor.js?v=2605132255"></script>
   <script src="/scripts/links.js?v=2605131734"></script>
   <script src="/scripts/notification.js?v=2605131738"></script>
-  <script src="/scripts/main.js?v=2605131932"></script>
+  <script src="/scripts/main.js?v=2605132316"></script>
 </body>
 
 </html>

@@ -8,12 +8,10 @@ const vueapp = createApp({
     }
   },
   methods: {
-    gotoLink: function (url) {
+    checkLink: function (url) {
       if (!url) {
         pushNotification("This feature is coming soon!", "error")
-        return
       }
-      window.location.href = url
     },
     isNew: function (update) {
       if (!update) return false
