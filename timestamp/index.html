@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Unix Timestamp Converter - Toolbox | LuSkywalker</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+  <meta name="description"
+    content="Unix timestamp converter tool to convert between Unix timestamps and human-readable dates.">
+  <meta name="keywords" content="Unix timestamp, timestamp, date, time, converter">
+  <meta name="theme-color" content="#0b0809" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/7205443a15.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <link rel="stylesheet" href="/utils/styles/main.css?v=2605131456">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TXXFD9KYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-3TXXFD9KYK');
+  </script>
+</head>
+
+<body class="flex flex-col bg-zinc-950 text-white min-h-screen leading-none">
+  <header class="mt-10">
+    <nav class="w-full">
+      <div class="max-w-screen-lg flex flex-col justify-between mx-auto p-4 h-16">
+        <h1 class="flex justify-center">
+          <span
+            class="sm:text-4xl text-2xl font-mono font-bold whitespace-nowrap mb-1 bg-linear-to-r from-rose-300 via-indigo-300 to-sky-300 bg-clip-text text-transparent">
+            >_ Timestamp Converter
+          </span>
+        </h1>
+        <span class="flex justify-end">
+          <a href="/utils/" class="group self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300">
+            <span
+              class="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 group-hover:before:bg-linear-to-r group-hover:before:from-rose-300 group-hover:before:via-indigo-300 group-hover:before:to-sky-300 before:transition-all before:duration-300 before:w-0 group-hover:before:w-[110%]!">
+              <span
+                class="relative text-white group-hover:text-gray-950 font-light group-hover:font-semibold underline group-hover:no-underline">
+                more tools...
+              </span>
+            </span>
+          </a>
+        </span>
+      </div>
+    </nav>
+  </header>
+
+  <main id="app" class="mt-18 grow">
+    <div class="max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="main-inner">
+      <div class="grid grid-cols-1 gap-4">
+        <div class="group rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
+          <div class="flex justify-center text-zinc-200/60 mb-3">
+            <div class="flex items-center gap-3">
+              <h2 class="text-lg font-light">Unix Timestamp</h2>
+              <i class="fa-regular fa-copy inline-block text-zinc-500/50 hover:text-rose-300 transition-all cursor-pointer"
+                @click="copy2clipboard(inputTimestamp)"></i>
+            </div>
+          </div>
+          <input type="number" v-model="inputTimestamp" id="inputTimestamp"
+            class="w-full p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
+            placeholder="timestamp">
+          </input>
+        </div>
+
+        <div class="flex gap-4 justify-center text-zinc-500 my-3">
+          <button @click="convert2Datetime"
+            class="flex items-center gap-2 py-2 px-4 rounded-lg bg-zinc-900/50 border border-white/5 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-300 cursor-pointer transition-all">
+            <i class="fa-solid fa-angles-down"></i>
+            <span class="font-semibold">Convert to Datetime</span>
+          </button>
+          <button @click="convert2Timestamp"
+            class="flex items-center gap-2 py-2 px-4 rounded-lg bg-zinc-900/50 border border-white/5 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-300 cursor-pointer transition-all">
+            <i class="fa-solid fa-angles-up"></i>
+            <span class="font-semibold">Convert to Timestamp</span>
+          </button>
+        </div>
+
+        <div
+          class="relative group flex flex-col gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
+          <div class="flex justify-center text-zinc-200/60">
+            <div class="flex items-center gap-3">
+              <h2 class="text-lg font-light">Datetime</h2>
+              <i class="fa-regular fa-copy inline-block text-zinc-500/50 hover:text-rose-300 transition-all cursor-pointer"
+                @click="copy2clipboard(inputDatetime)"></i>
+            </div>
+          </div>
+          <div class="flex gap-2 place-items-center">
+            <input type="number" id="inputYear" v-model="inputDatetimeModel.year"
+              class="w-full p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
+              placeholder="year">
+            </input>
+            <span>/</span>
+            <input type="number" id="inputMonth" v-model="inputDatetimeModel.month"
+              class="w-full p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
+              placeholder="month">
+            </input>
+            <span>/</span>
+            <input type="number" id="inputDay" v-model="inputDatetimeModel.day"
+              class="w-full p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
+              placeholder="day">
+            </input>
+            <span class="mx-2">&#32;</span>
+            <input type="number" id="inputHour" v-model="inputDatetimeModel.hour"
+              class="w-full p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
+              placeholder="hour">
+            </input>
+            <span class="mx-2">:</span>
+            <input type="number" id="inputMinute" v-model="inputDatetimeModel.minute"
+              class="w-full p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
+              placeholder="minute">
+            </input>
+            <span class="mx-2">:</span>
+            <input type="number" id="inputSecond" v-model="inputDatetimeModel.second"
+              class="w-full p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
+              placeholder="second">
+            </input>
+            <span class=" text-zinc-500/50 hover:text-rose-300 cursor-pointer" @click="showFullString = true">
+              <i class="ms-2 fa-solid fa-pen"></i>
+            </span>
+          </div>
+          <div class="flex gap-2 transition-all duration-300 ease-in-out h-0 opacity-0"
+            :class="showFullString ? 'h-full! opacity-100!' : ''">
+            <input type="text" v-model="inputDatetimeTemp" id="inputDatetimeFullString"
+              class="w-full p-2 bg-zinc-800/50 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-rose-300 font-mono border border-dashed border-white/5 resize-y"
+              placeholder="full datetime string" class="grow">
+            </input>
+            <button type="button" @click="directInputDatetime"
+              class="flex items-center gap-2 py-2 px-4 rounded-lg bg-zinc-900/50 border border-white/5 hover:border-zinc-300 hover:bg-zinc-400/10 hover:shadow-[0_0_20px] hover:shadow-zinc-400/10 hover:text-zinc-300 cursor-pointer transition-all">
+              Save
+            </button>
+          </div>
+          <div class="text-sm text-zinc-400/50 leading-4.5 font-light">
+            <i class="fa-solid fa-circle-info text-xs me-1"></i>
+            <span>Datetime format:</span><br>
+              <ul class="list-disc list-inside">
+              <li><span class="font-mono">YYYY/MM/DD HH:mm:ss</span> with <span class="font-bold text-zinc-200/75">UTC</span> timezone.</li>
+              <li>Full string default using <span class="font-bold text-zinc-200/75">UTC</span> timezone.</li>
+              <li>If wanting to use a different timezone, please convert it manually. e.g. <span class="font-mono">2026-05-04 15:30 UTC+9</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-white/5 bg-zinc-900/50 px-7 py-6">
+          <div class="flex flex-col gap-3 justify-between">
+            <div class="flex gap-3">
+              <h2 class="text-lg font-bold">
+                <i class="fa-solid fa-circle-info me-2"></i>
+                Details time info
+              </h2>
+            </div>
+            <ul class="list-disc list-inside text-zinc-200/50 font-light">
+              <li class="leading-8">Unix Timestamp: <span class="ms-4 font-mono">{{ inputTimestamp }}</span></li>
+              <li class="leading-8">UTC Datetime: <span class="ms-4 font-mono">{{ inputDatetime.toUTCString() }}</span>
+              </li>
+              <li class="leading-8">Local Datetime: <span class="ms-4 font-mono">{{ inputDatetime.toString() }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer" class="mt-8">
+    <div class="max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="footer-inner">
+      <div class="grid grid-cols-1 gap-2">
+        <div class="foot-splitter w-[60%] sm:w-72 mx-auto pb-4">
+          <div class="flex justify-between text-2xl text-zinc-500/50">
+            <span class="font-mono">*</span>
+            <span class="font-mono">*</span>
+            <span class="font-mono">*</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="https://github.com/luswdev/utils-box" target="_blank"
+            class="flex justify-between place-items-center gap-2 font-light px-4 py-3 rounded-xl bg-zinc-900/50 text-zinc-200 border bg-zinc-200/5 border-zinc-100/50 hover:border-zinc-100 hover:bg-zinc-200/10 hover:shadow-[0_0_20px] hover:shadow-zinc-200/10 hover:text-zinc-100 cursor-pointer transition-all">
+            <i class="fa-brands fa-github"></i>
+            <span class="grow text-center">GitHub</span>
+          </a>
+          <a href="https://ko-fi.com/luswdev" target="_blank"
+            class="flex justify-between place-items-center gap-2 font-light px-4 py-3 rounded-xl text-rose-300 bg-rose-400/5 border border-rose-300/50 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-100 cursor-pointer transition-all">
+            <i class="fa-regular fa-heart"></i>
+            <span class="grow text-center">Sponsor Us</span>
+          </a>
+          <a href="mailto:info@lusw.dev" target="_blank"
+            class="flex justify-between place-items-center gap-2 font-light px-4 py-3 rounded-xl text-sky-300 bg-sky-400/5 border border-sky-300/50 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px] hover:shadow-sky-400/10 hover:text-zinc-100 cursor-pointer transition-all">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="grow text-center">Contact Us</span>
+          </a>
+        </div>
+        <div class="max-w-screen-lg mx-auto text-center py-4 text-sm text-neutral-500 font-light">
+          &copy; {{ new Date().getFullYear() }} LuSkywalker {{ version }}. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/utils/scripts/notification.js?v=2605131502"></script>
+  <script src="scripts/main.js?v=2605131709"></script>
+</body>
+
+</html>
