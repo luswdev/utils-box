@@ -28,3 +28,11 @@ createApp({
     initNotification()
   }
 }).mount('#app')
+
+createApp({
+  data: function () {
+    return {
+      version: 'v1.0.0',
+    }
+  },
+}).mount('#footer')
