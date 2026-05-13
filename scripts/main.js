@@ -40,7 +40,7 @@ const vueapp = createApp({
 createApp({
   data: function () {
     return {
-      version: 'v1.0.0',
+      version: 'v1.0.1',
     }
   },
 }).mount('#footer')

@@ -15,7 +15,7 @@ function createVisitor () {
   visitor.style = ''
   for (let i = 0; i < 8; i++) {
     const digit = document.createElement('span')
-    digit.className = 'bg-zinc-200/5 p-1'
+    digit.className = 'bg-zinc-200/5 p-1 font-mono'
     digit.innerText = cnt[i]
     visitor.appendChild(digit)
   }
