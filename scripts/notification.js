@@ -10,8 +10,10 @@ function initNotification () {
 }
 
 function pushNotification (message, type = "success") {
+  const FADE_OUT_DURATION = 300
+
   const notification = document.createElement("div")
-  notification.className = `relative rounded-xl border border-white/10 bg-zinc-900 p-4 sm:w-80 w-[90%] mx-auto sm:mx-0 shadow-[0_0_20px] shadow-zinc-700/50 transition-all transition-discrete`
+  notification.className = `relative rounded-xl border border-white/10 bg-zinc-900 p-4 sm:w-80 w-[90%] mx-auto sm:mx-0 shadow-[0_0_20px] shadow-zinc-700/50 animate-[tilt-shaking_0.15s] transition-opacity duration-${FADE_OUT_DURATION} ease-out`
 
   const notificationContent = document.createElement("div")
   notificationContent.className = "flex justify-between text-sm"
@@ -55,7 +57,10 @@ function pushNotification (message, type = "success") {
     progressBar.style.width = (parseFloat(1 - (currentProg / notificationAliveTime)) * 100) + "%"
 
     if (currentProg >= notificationAliveTime) {
-      notification.remove()
+      notification.classList += " opacity-0"
+      setTimeout(() => {
+        notification.remove()
+      }, 300)
       clearInterval(progressInterval)
     }
   }, step)
