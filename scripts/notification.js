@@ -4,7 +4,7 @@ function initNotification () {
   if (!document.getElementById(NOTIFICATIONS_CONTAINER_ID)) {
     const container = document.createElement("div")
     container.id = NOTIFICATIONS_CONTAINER_ID
-    container.className = "absolute top-20 sm:right-10 right-0 w-full sm:w-auto flex flex-col gap-4 z-50"
+    container.className = "fixed top-5 sm:top-10 sm:right-10 right-0 w-full sm:w-auto flex flex-col gap-4 z-50"
     document.body.appendChild(container)
   }
 }
@@ -31,7 +31,7 @@ function pushNotification (message, type = "success") {
   messageSpan.appendChild(document.createTextNode(message))
 
   const closeIcon = document.createElement("i")
-  closeIcon.className = "fa-solid fa-x text-neutral-500 hover:text-rose-300 cursor-pointer"
+  closeIcon.className = "fa-solid fa-x text-neutral-500 hover:text-rose-300 focus:text-rose-300 cursor-pointer"
   closeIcon.addEventListener("click", () => {
       notification.classList += " opacity-0"
       setTimeout(() => {
