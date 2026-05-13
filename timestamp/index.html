@@ -27,6 +27,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
   <link rel="stylesheet" href="/utils/styles/main.css?v=2605131456">
 
   <!-- Google tag (gtag.js) -->
@@ -183,10 +185,10 @@
     </div>
   </main>
 
-  <footer id="footer" class="mt-8">
+  <footer id="footer" class="mt-8 py-4">
     <div class="max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="footer-inner">
-      <div class="grid grid-cols-1 gap-2">
-        <div class="foot-splitter w-[60%] sm:w-72 mx-auto pb-4">
+      <div class="grid grid-cols-1 gap-6">
+        <div class="foot-splitter w-[60%] sm:w-72 mx-auto">
           <div class="flex justify-between text-2xl text-zinc-500/50">
             <span class="font-mono">*</span>
             <span class="font-mono">*</span>
@@ -210,15 +212,18 @@
             <span class="grow text-center">Contact Us</span>
           </a>
         </div>
-        <div class="max-w-screen-lg mx-auto text-center py-4 text-sm text-zinc-500/60 font-light">
+        <div id="busuanzi_container_site_pv" class="hidden"><span id="busuanzi_value_page_pv">-1</span></div>
+        <div id="visitor-container" class="font-bold gap-0.5 inline-flex justify-center text-zinc-500/60"></div>
+        <div class="text-center text-sm text-zinc-500/60 font-light">
           &copy; {{ new Date().getFullYear() }} LuSkywalker {{ version }}. All rights reserved.
         </div>
       </div>
     </div>
   </footer>
 
+  <script src="/utils/scripts/visitor.js?v=2605131930"></script>
   <script src="/utils/scripts/notification.js?v=2605131738"></script>
-  <script src="scripts/main.js?v=2605131709"></script>
+  <script src="scripts/main.js?v=2605131923"></script>
 </body>
 
 </html>

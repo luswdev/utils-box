@@ -51,6 +51,14 @@ createApp({
   },
   mounted: function () {
     initNotification()
+
+    const updateVisitorCount = setInterval(() => {
+      const visitors = getVisitorFromBusuanzi()
+      if (visitors !== '000000-1') {  // busuanzi has loaded the count
+        createVisitor()
+        clearInterval(updateVisitorCount)
+      }
+    }, 100)
   }
 }).mount('#app')
 
