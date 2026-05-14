@@ -1,6 +1,6 @@
 const LINKS = [
   {
-    title: 'Daily Tools',
+    title: 'Utility Tools',
     indictor: ['bg-fuchsia-300', 'bg-fuchsia-400/75'],
     text: 'group-hover:group-not-[.disabled]:text-fuchsia-300 group-focus:group-not-[.disabled]:text-fuchsia-300',
     border: 'hover:not-[.disabled]:border-fuchsia-300 focus:not-[.disabled]:border-fuchsia-300',
@@ -11,6 +11,18 @@ const LINKS = [
         update: '',
         title: 'Unit Converter',
         description: 'Convert between different units of measurement.',
+        url: ''
+      },
+      {
+        update: '',
+        title: 'Keyboard Tester',
+        description: 'Test your keyboard and see which keys are being pressed.',
+        url: ''
+      },
+      {
+        update: '',
+        title: 'Unicode Symbols',
+        description: 'Browse and copy various Unicode symbols and emojis.',
         url: ''
       },
     ],
@@ -176,6 +188,46 @@ const LINKS = [
         title: 'Random Picker',
         description: 'Randomly pick items from a list.',
         url: ''
+      },
+      {
+        update: '',
+        title: 'FPS Reaction Speed Tester',
+        description: 'Test your reaction speed in a fast-paced environment.',
+        url: ''
+      },
+    ],
+  },
+  {
+    title: 'You May Also Like! (External Links)',
+    indictor: ['bg-slate-300', 'bg-slate-400/75'],
+    text: 'group-hover:group-not-[.disabled]:text-slate-300 group-focus:group-not-[.disabled]:text-slate-300',
+    border: 'hover:not-[.disabled]:border-slate-300 focus:not-[.disabled]:border-slate-300',
+    background: 'hover:not-[.disabled]:bg-slate-400/10 focus:not-[.disabled]:bg-slate-400/10',
+    shadow: 'hover:not-[.disabled]:shadow-slate-400/10 focus:not-[.disabled]:shadow-slate-400/10',
+    groups: [
+      {
+        update: '',
+        title: 'Our Tech Blog!',
+        description: 'Read our latest articles and updates.',
+        url: 'https://blog.lusw.dev'
+      },
+      {
+        update: '',
+        title: 'SplatoonBot',
+        description: 'A bot for Splatoon Players!',
+        url: 'https://lusw.dev/splatoon/'
+      },
+      {
+        update: '',
+        title: '철도탑승기록',
+        description: '(한국)철도 탑승 기록 사이트입니다!',
+        url: 'https://kr-metro.lusw.dev/'
+      },
+      {
+        update: '',
+        title: '우연히 유년잉',
+        description: '我們的韓文歌詞翻譯站!',
+        url: 'https://kr.lusw.dev/docs/'
       },
     ],
   },
