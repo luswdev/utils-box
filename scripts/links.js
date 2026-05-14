@@ -87,6 +87,18 @@ const LINKS = [
         description: 'Test and validate regular expressions.',
         url: ''
       },
+      {
+        update: '',
+        title: 'Encrypt/Decrypt Tool',
+        description: 'Encrypt and decrypt text using various algorithms.',
+        url: ''
+      },
+      {
+        update: '',
+        title: 'Binary Viewer',
+        description: 'View and edit binary data.',
+        url: ''
+      },
     ],
   },
   {
@@ -98,16 +110,16 @@ const LINKS = [
     shadow: 'hover:not-[.disabled]:shadow-rose-400/10 focus:not-[.disabled]:shadow-rose-400/10',
     groups: [
       {
-        update: '2026-05-07',
+        update: '2026-05-13',
         title: 'ASCII Code Converter',
         description: 'Convert text to ASCII code and vice versa.',
         url: 'ascii'
       },
       {
-        update: '',
+        update: '2026-05-14',
         title: 'Base64 Code Converter',
         description: 'Convert text to base64 code and vice versa.',
-        url: ''
+        url: 'base64'
       },
       {
         update: '',
