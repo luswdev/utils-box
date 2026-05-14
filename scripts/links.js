@@ -89,14 +89,32 @@ const LINKS = [
       },
       {
         update: '',
-        title: 'Encrypt/Decrypt Tool',
-        description: 'Encrypt and decrypt text using various algorithms.',
+        title: 'Binary Viewer',
+        description: 'View and edit binary data.',
         url: ''
       },
       {
         update: '',
-        title: 'Binary Viewer',
-        description: 'View and edit binary data.',
+        title: 'CSS Minifier',
+        description: 'Convert CSS to minified formats and vice versa.',
+        url: ''
+      },
+      {
+        update: '',
+        title: 'JavaScript Minifier',
+        description: 'Convert JavaScript to minified formats and vice versa.',
+        url: ''
+      },
+      {
+        update: '',
+        title: 'JSON Converter',
+        description: 'Convert JSON to various formats.',
+        url: ''
+      },
+      {
+        update: '',
+        title: 'YAML Converter',
+        description: 'Convert YAML to various formats.',
         url: ''
       },
     ],
@@ -129,26 +147,8 @@ const LINKS = [
       },
       {
         update: '',
-        title: 'JSON Converter',
-        description: 'Convert JSON to various formats.',
-        url: ''
-      },
-      {
-        update: '',
-        title: 'YAML Converter',
-        description: 'Convert YAML to various formats.',
-        url: ''
-      },
-      {
-        update: '',
-        title: 'CSS Converter',
-        description: 'Convert CSS to minified formats and vice versa.',
-        url: ''
-      },
-      {
-        update: '',
-        title: 'JavaScript Converter',
-        description: 'Convert JavaScript to minified formats and vice versa.',
+        title: 'Encrypt/Decrypt Tool',
+        description: 'Encrypt and decrypt text using various algorithms.',
         url: ''
       },
     ],
