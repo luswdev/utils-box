@@ -35,10 +35,20 @@ const vueapp = createApp({
   }
 }).mount('#app')
 
+const VERSION = 'v1.0.3'
+
 createApp({
   data: function () {
     return {
-      version: 'v1.0.3',
+      version: VERSION,
+    }
+  },
+}).mount('#header')
+
+createApp({
+  data: function () {
+    return {
+      version: VERSION,
     }
   },
 }).mount('#footer')

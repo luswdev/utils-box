@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
     rel="stylesheet">
 
   <script src="https://kit.fontawesome.com/7205443a15.js" crossorigin="anonymous"></script>
@@ -27,7 +27,7 @@
 
   <script defer src="https://events.vercount.one/js"></script>
 
-  <link rel="stylesheet" href="/styles/main.css?v=2605131456">
+  <link rel="stylesheet" href="/styles/main.css?v=2605141426">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TXXFD9KYK"></script>
@@ -41,15 +41,28 @@
 </head>
 
 <body class="flex flex-col bg-zinc-950 text-white min-h-screen">
-  <header class="mt-10">
+  <header class="mt-10" id="header">
     <nav class="w-full">
-      <div class="max-w-screen-lg flex flex-col justify-between mx-auto p-4 h-16">
-        <h1 class="flex justify-center">
+      <div class="max-w-screen-lg flex justify-center items-baseline gap-4 mx-auto p-4 h-16">
+        <h1 class="flex justify-center text-4xl font-bold">
+          <span class="tracking-[-0.125rem] font-mono text-zinc-400">
+            >_
+          </span>
           <span
-            class="text-4xl font-mono font-bold whitespace-nowrap mb-1 bg-linear-to-r from-rose-300 via-indigo-300 to-sky-300 bg-clip-text text-transparent">
-            >_ Toolbox
+            class="ps-2 whitespace-nowrap bg-linear-to-r from-rose-300 via-indigo-300 to-sky-300 bg-clip-text text-transparent font-mono">
+            Toolbox
           </span>
         </h1>
+        <span class="flex justify-end">
+          <span class="self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300">
+            <span
+              class="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-6 before:bg-rose-300/80 before:shadow-lg before:shadow-zinc-500/25">
+              <span class="relative text-zinc-950 font-semibold font-semibold font-mono p-1">
+                {{ version }}
+              </span>
+            </span>
+          </span>
+        </span>
       </div>
     </nav>
   </header>
@@ -61,7 +74,7 @@
           <h1 class="flex gap-3 text-2xl font-bold mb-5 text-center text-zinc-200/75">
             <span
               class="bg-gradient-to-r from-zinc-200/20 from-50% to-transparent to-0% bg-center bg-size-[12px_1.5px] bg-repeat-x grow"></span>
-            <span>{{ link.title }}</span>
+            <span class="font-title text-shadow-lg text-shadow-zinc-800/32">{{ link.title }}</span>
             <span
               class="bg-gradient-to-r from-zinc-200/20 from-50% to-transparent to-0% bg-center bg-size-[12px_1.5px] bg-repeat-x grow"></span>
           </h1>
@@ -72,7 +85,7 @@
               class="relative group rounded-md rounded-xl border border-white/10 bg-zinc-900/50 opacity-50 not-[.disabled]:opacity-100 hover:not-[.disabled]:shadow-[0_0_20px] shadow-none transition-colors duration-200 cursor-not-allowed not-[.disabled]:cursor-pointer">
               <div class="p-4 text-start h-full flex flex-col place-items-start">
                 <h2 class="text-lg font-bold mb-2" :class="link.text">
-                  <span class="font-mono text-zinc-400">>_ </span>
+                  <span class="font-mono text-zinc-400 tracking-[-0.125rem]">>_ </span>
                   {{ item.title }}
                 </h2>
                 <p class="text-sm text-zinc-400 font-light">{{ item.description }}</p>
@@ -128,9 +141,9 @@
   </footer>
 
   <script src="/scripts/visitor.js?v=2605132348"></script>
-  <script src="/scripts/links.js?v=2605141211"></script>
+  <script src="/scripts/links.js?v=2605141429"></script>
   <script src="/scripts/notification.js?v=2605132339"></script>
-  <script src="/scripts/main.js?v=2605132348"></script>
+  <script src="/scripts/main.js?v=2605141358"></script>
 </body>
 
 </html>

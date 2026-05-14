@@ -8,6 +8,11 @@
   font-style: normal;
 }
 
+.font-title {
+  font-family: "Bree Serif", serif;
+  font-style: normal;
+}
+
 @keyframes tilt-shaking {
   0% {
     transform: rotate(0deg);

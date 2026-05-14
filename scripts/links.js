@@ -141,7 +141,7 @@ const LINKS = [
       },
       {
         update: '2026-05-14',
-        title: 'URL Code Converter',
+        title: 'URL Code Decoder',
         description: 'Convert text to URL code and vice versa.',
         url: 'url'
       },
