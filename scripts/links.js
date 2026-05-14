@@ -36,10 +36,10 @@ const LINKS = [
     shadow: 'hover:not-[.disabled]:shadow-lime-400/10 focus:not-[.disabled]:shadow-lime-400/10',
     groups: [
       {
-        update: '',
+        update: '2026-05-14',
         title: 'Day and Time Clock',
         description: 'Show current day and time with timezone support.',
-        url: ''
+        url: 'clock'
       },
       {
         update: '',
