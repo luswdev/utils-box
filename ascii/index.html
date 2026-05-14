@@ -128,9 +128,11 @@
             class="w-full h-56 p-2 bg-zinc-800/50  text-white rounded-md focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 font-mono border border-dashed border-white/5 resize-y"
             placeholder="68 65 6C 6C 6F 20 77 6F 72 6C 64">
           </textarea>
-          <div class="text-sm text-zinc-400/50 mt-2 leading-4.5 font-light">
-            <i class="fa-solid fa-circle-info text-xs me-1"></i>
-            <span>Accepts the following formats:</span>
+          <div class="text-sm text-zinc-400/50 leading-4.5 font-light">
+            <div class="flex gap-1 items-center">
+              <i class="fa-solid fa-circle-info text-xs"></i>
+              <span>Accepts the following formats:</span>
+            </div>
             <ul class="list-disc list-inside">
               <li>Space-separated: <span class="font-mono">68 65 6C 6C 6F</span></li>
               <li>Comma-separated: <span class="font-mono">68, 65, 6C, 6C, 6F</span></li>
@@ -142,12 +144,10 @@
 
         <div class="rounded-2xl flex flex-col gap-3 border border-white/5 bg-zinc-900/50 px-7 py-6">
           <div class="flex flex-col gap-3 justify-between">
-            <div class="flex gap-3">
-              <h2 class="text-lg font-bold text-zinc-300/75 font-title">
-                <i class="fa-solid fa-circle-info me-2"></i>
-                Special Characters
-              </h2>
-            </div>
+            <h2 class="flex gap-3 items-center text-lg font-bold text-zinc-300/75 font-title">
+              <i class="fa-solid fa-circle-info"></i>
+              Special Characters
+            </h2>
             <div class="overflow-auto">
               <div class="table sm:w-full w-fit border border-white/10 rounded-lg">
                 <div class="table-header-group text-zinc-300/75">

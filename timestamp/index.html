@@ -56,7 +56,7 @@
           </span>
         </h1>
         <span class="flex justify-end">
-          <a href="/" class="group self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300">
+          <a href="/" class="group self-center whitespace-nowrap underline text-light hover:text-rose-300">
             <span
               class="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 group-hover:before:bg-linear-to-r group-hover:before:from-rose-300 group-hover:before:via-indigo-300 group-hover:before:to-sky-300 group-focus:before:bg-linear-to-r group-focus:before:from-rose-300 group-focus:before:via-indigo-300 group-focus:before:to-sky-300  before:transition-all before:duration-300 before:w-0 group-hover:before:w-[110%]! group-focus:before:w-[110%]!">
               <span
@@ -110,7 +110,7 @@
                 @click="copy2clipboard(inputDatetime)"></i>
             </div>
           </div>
-          <div class="flex sm:flex-nowrap flex-wrap gap-2 place-items-center scheme-dark">
+          <div class="flex sm:flex-nowrap flex-wrap gap-3 place-items-center scheme-dark">
             <input type="number" id="inputYear" v-model="inputDatetimeModel.year" max="2999" min="1900"
               class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 font-mono border border-dashed border-white/5"
               placeholder="year">
@@ -125,24 +125,24 @@
               class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 font-mono border border-dashed border-white/5"
               placeholder="day">
             </input>
-            <span class="mx-2">&#32;</span>
+            <span>&#32;</span>
             <input type="number" id="inputHour" v-model="inputDatetimeModel.hour" max="23" min="0"
               class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 font-mono border border-dashed border-white/5"
               placeholder="hour">
             </input>
-            <span class="mx-2">:</span>
+            <span>:</span>
             <input type="number" id="inputMinute" v-model="inputDatetimeModel.minute" max="59" min="0"
               class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 font-mono border border-dashed border-white/5"
               placeholder="minute">
             </input>
-            <span class="mx-2">:</span>
+            <span>:</span>
             <input type="number" id="inputSecond" v-model="inputDatetimeModel.second" max="59" min="0"
               class="p-2 grow w-auto max-w-20 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 font-mono border border-dashed border-white/5"
               placeholder="second">
             </input>
             <span class="text-zinc-500/50 hover:text-rose-300 focus:text-rose-300 cursor-pointer"
               @click="showFullString = !showFullString">
-              <i class="ms-2 fa-solid fa-pen"></i>
+              <i class="fa-solid fa-pen"></i>
             </span>
           </div>
           <div class="flex gap-2 transition-all duration-300 ease-in-out h-0 opacity-0"
@@ -157,8 +157,10 @@
             </button>
           </div>
           <div class="text-sm text-zinc-400/50 leading-4.5 font-light">
-            <i class="fa-solid fa-circle-info text-xs me-1"></i>
-            <span>Datetime format:</span><br>
+            <div class="flex gap-1 items-center">
+              <i class="fa-solid fa-circle-info text-xs"></i>
+              <span>Datetime format:</span>
+            </div>
             <ul class="list-disc list-inside">
               <li><span class="font-mono">YYYY/MM/DD HH:mm:ss</span> with <span
                   class="font-bold text-zinc-200/75">UTC</span> timezone.</li>
@@ -171,23 +173,42 @@
 
         <div class="rounded-2xl border border-white/5 bg-zinc-900/50 px-7 py-6">
           <div class="flex flex-col gap-3 justify-between">
-            <div class="flex gap-3">
-              <h2 class="text-lg font-bold text-zinc-300/75 font-title">
-                <i class="fa-solid fa-circle-info me-2"></i>
-                Details time info
-              </h2>
+            <h2 class="flex gap-3 items-center text-lg font-bold text-zinc-300/75 font-title">
+              <i class="fa-solid fa-circle-info"></i>
+              Details Time Information
+            </h2>
+            <div class="table text-zinc-200/50 font-light">
+              <div class="table-row-group">
+                <div class="table-row">
+                  <div class="table-cell py-2 font-semibold">
+                    Unix Timestamp
+                  </div>
+                  <div class="table-cell py-2 font-mono">
+                    {{ inputTimestamp }}
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="table-cell py-2 font-semibold">
+                    UTC Datetime
+                  </div>
+                  <div class="table-cell py-2 font-mono">
+                    {{ inputDatetime.toUTCString() }}
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="table-cell py-2 font-semibold">
+                    Local Datetime
+                  </div>
+                  <div class="table-cell py-2 font-mono">
+                    {{ inputDatetime.toString() }}
+                  </div>
+                </div>
+              </div>
+              </ul>
             </div>
-            <ul class="list-disc list-inside text-zinc-200/50 font-light">
-              <li class="leading-8">Unix Timestamp: <span class="ms-4 font-mono">{{ inputTimestamp }}</span></li>
-              <li class="leading-8">UTC Datetime: <span class="ms-4 font-mono">{{ inputDatetime.toUTCString() }}</span>
-              </li>
-              <li class="leading-8">Local Datetime: <span class="ms-4 font-mono">{{ inputDatetime.toString() }}</span>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
-    </div>
   </main>
 
   <footer id="footer" class="mt-8 py-4">
