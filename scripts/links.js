@@ -140,10 +140,10 @@ const LINKS = [
         url: 'base64'
       },
       {
-        update: '',
+        update: '2026-05-14',
         title: 'URL Code Converter',
         description: 'Convert text to URL code and vice versa.',
-        url: ''
+        url: 'url'
       },
       {
         update: '',
