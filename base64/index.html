@@ -73,8 +73,8 @@
     <div class="max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="main-inner">
       <div class="grid grid-cols-1 gap-4">
         <div
-          class="group flex flex-col gap-2 rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
-          <div class="flex justify-center text-zinc-200/60 mb-3">
+          class="group flex flex-col gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
+          <div class="flex justify-center text-zinc-200/60">
             <div class="flex items-center gap-3">
               <h2 class="text-lg font-light">Normal String</h2>
               <i class="fa-regular fa-copy inline-block text-zinc-500/50 hover:text-rose-300 focus:text-rose-300 transition-all cursor-pointer"
@@ -91,7 +91,8 @@
           </div>
           <div class="flex flex-wrap gap-2 place-items-center text-zinc-200/60 font-light">
             <span class="">Or, upload a file to encode:</span>
-            <input type="text" class="grow rounded-md border border-dashed border-white/5 ps-2 py-2 bg-zinc-800/50 text-white"
+            <input type="text"
+              class="grow rounded-md border border-dashed border-white/5 ps-2 py-2 bg-zinc-800/50 text-white"
               placeholder="No file chosen..." disabled v-model="fileSelected">
             <label for="file2encode"
               class="flex items-center gap-2 py-2 px-4 rounded-lg bg-zinc-900/50 border border-white/5 hover:border-zinc-300 hover:bg-zinc-400/10 hover:shadow-[0_0_20px] hover:shadow-zinc-400/10 hover:text-zinc-300 focus:border-zinc-300 focus:bg-zinc-400/10 focus:shadow-[0_0_20px] focus:shadow-zinc-400/10 focus:text-zinc-300 cursor-pointer transition-all">
@@ -114,8 +115,9 @@
           </button>
         </div>
 
-        <div class="relative group rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
-          <div class="flex justify-center text-zinc-200/60 mb-3">
+        <div
+          class="relative flex flex-col gap-3 group rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
+          <div class="flex justify-center text-zinc-200/60">
             <div class="flex items-center gap-3">
               <h2 class="text-lg font-light">Base64 String</h2>
               <i class="fa-regular fa-copy inline-block text-zinc-500/50 hover:text-rose-300 focus:text-rose-300 transition-all cursor-pointer"

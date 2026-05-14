@@ -55,7 +55,7 @@
           </span>
         </h1>
         <span class="flex justify-end">
-          <a href="/" class="group self-center whitespace-nowrap mb-1 underline text-light hover:text-rose-300">
+          <a href="/" class="group self-center whitespace-nowrap underline text-light hover:text-rose-300">
             <span
               class="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 group-hover:before:bg-linear-to-r group-hover:before:from-rose-300 group-hover:before:via-indigo-300 group-hover:before:to-sky-300 group-focus:before:bg-linear-to-r group-focus:before:from-rose-300 group-focus:before:via-indigo-300 group-focus:before:to-sky-300  before:transition-all before:duration-300 before:w-0 group-hover:before:w-[110%]! group-focus:before:w-[110%]!">
               <span
@@ -73,8 +73,8 @@
     <div class="max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="main-inner">
       <div class="grid grid-cols-1 gap-4">
         <div
-          class="group flex flex-col gap-2 rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
-          <div class="flex justify-center text-zinc-200/60 mb-3">
+          class="group flex flex-col gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
+          <div class="flex justify-center text-zinc-200/60">
             <div class="flex items-center gap-3">
               <h2 class="text-lg font-light">Normal String</h2>
               <i class="fa-regular fa-copy inline-block text-zinc-500/50 hover:text-rose-300 focus:text-rose-300 transition-all cursor-pointer"
@@ -104,8 +104,9 @@
           </button>
         </div>
 
-        <div class="relative group rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
-          <div class="flex justify-center text-zinc-200/60 mb-3">
+        <div
+          class="relative flex flex-col gap-3 group rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
+          <div class="flex justify-center text-zinc-200/60">
             <div class="flex items-center gap-3">
               <h2 class="text-lg font-light">URL String</h2>
               <i class="fa-regular fa-copy inline-block text-zinc-500/50 hover:text-rose-300 focus:text-rose-300 transition-all cursor-pointer"
@@ -113,7 +114,7 @@
             </div>
           </div>
           <textarea v-model="urlString" id="urlString"
-            class="w-full h-56 p-2 bg-zinc-800/50  text-white rounded-md focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 font-mono border border-dashed border-white/5 resize-y"
+            class="w-full h-56 p-2 bg-zinc-800/50 text-white rounded-md focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 font-mono border border-dashed border-white/5 resize-y"
             placeholder="https%3A%2F%2Futils.lusw.dev%2F">
           </textarea>
         </div>
