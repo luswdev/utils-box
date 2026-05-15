@@ -79,12 +79,12 @@
       <div class="flex flex-col gap-3 basis-full">
         <div id="clock-block" allow="fullscreen"
           class="relative grow flex flex-col gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 origin-center"
-          :class="isFull ? 'sm:scale-72 bg-inherit! border-none' : ''">
+          :class="isFull ? 'lg:scale-72 bg-inherit! border-none' : ''">
           <div class="flex justify-center items-center basis-full" style="container-type: size;">
             <div class="flex flex-col items-baseline">
               <button @click="onShowList"
                 class="flex gap-2 text-zinc-400/80 hover:not-disabled:text-rose-300 focus:not-disabled:text-rose-300 not-disabled:cursor-pointer hover:not-disabled:bg-zinc-800/50 focus:not-disabled:bg-zinc-800/50 focus:not-disabled:outline-none focus:not-disabled:shadow-[0_0_0.25rem] focus:not-disabled:shadow-rose-300 p-2 rounded-md"
-                :class="isFull ? 'sm:text-[4.5cqh] text-[4.5cqw]' : ''" data-dropdown-toggle="timezoneList"
+                :class="isFull ? 'lg:text-[4.5cqh] text-[4.5cqw]' : ''" data-dropdown-toggle="timezoneList"
                 data-dropdown-placement="bottom-start" :disabled="isFull">
                 <span>
                   <span class="rounded-xs fi" :class="'fi-' + displayTimezoneFlag"></span>
@@ -95,13 +95,13 @@
                   <i class="fa-solid fa-chevron-down"></i>
                 </span>
               </button>
-              <span class="text-zinc-200/80 ps-2" :class="isFull ? 'sm:text-[4.5cqh] text-[4.5cqw]' : ''">
+              <span class="text-zinc-200/80 ps-2" :class="isFull ? 'lg:text-[4.5cqh] text-[4.5cqw]' : ''">
                 {{ displayMonth }} {{ displayDay }}, {{ displayYear}}
               </span>
               <div class="flex items-baseline font-black gap-1">
-                <span class="sm:text-[80cqh] text-[35cqw] text-zinc-200">{{ displayHour}}</span>
-                <span class="sm:text-[80cqh] text-[35cqw] text-rose-300">{{ displayMinute }}</span>
-                <span class="sm:text-[20cqh] text-[8cqw] text-zinc-200/72">{{ displaySecond }}</span>
+                <span class="lg:text-[80cqh] text-[35cqw] text-zinc-200">{{ displayHour}}</span>
+                <span class="lg:text-[80cqh] text-[35cqw] text-rose-300">{{ displayMinute }}</span>
+                <span class="lg:text-[20cqh] text-[8cqw] text-zinc-200/72">{{ displaySecond }}</span>
               </div>
             </div>
           </div>
