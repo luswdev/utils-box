@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Currency Converter - Toolbox | LuSkywalker</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=no" />
+  <meta name="HandheldFriendly" content="true" />
+
+  <meta name="description" content="Convert currencies with multi selected">
+  <meta name="keywords" content="Currency converter, Currencies">
+  <meta name="theme-color" content="#0b0809" />
+
+  <!-- PWA -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Currency Converter">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=4">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest?v=2">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
+
+  <script src="https://kit.fontawesome.com/7205443a15.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuzzysort@3.1.0/fuzzysort.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.8/dist/js.cookie.min.js"></script>
+
+  <script defer src="https://events.vercount.one/js"></script>
+
+  <link rel="stylesheet" href="/styles/main.css?v=2605141426">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TXXFD9KYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-3TXXFD9KYK');
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1606777032090838"
+    crossorigin="anonymous"></script>
+
+  <!-- prevent PWA for pull refresh -->
+  <style>
+    @media (display-mode: standalone) {
+
+      html,
+      body {
+        overscroll-behavior-y: contain;
+        touch-action:none;
+      }
+    }
+  </style>
+</head>
+
+<body class="flex flex-col bg-zinc-950 text-white min-h-screen leading-none">
+  <header id="header">
+    <nav class="w-full" :class="isPWA ? 'mt-1' : 'mt-10'">
+      <div class="max-w-screen-lg flex flex-col justify-between mx-auto p-4 h-16">
+        <h1 class="flex font-bold" :class="isPWA ? 'text-xl justify-start' : 'text-4xl justify-center'">
+          <span class="tracking-[-0.125rem] font-mono text-zinc-400">
+            >_
+          </span>
+          <span
+            class="ps-2 pb-1 whitespace-nowrap bg-linear-to-r from-rose-300 via-indigo-300 to-sky-300 bg-clip-text text-transparent font-mono">
+            Currency
+          </span>
+        </h1>
+        <span v-if="!isPWA" class="flex justify-end">
+          <a href="/" class="group self-center whitespace-nowrap underline text-light hover:text-rose-300">
+            <span
+              class="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 group-hover:before:bg-linear-to-r group-hover:before:from-rose-300 group-hover:before:via-indigo-300 group-hover:before:to-sky-300 group-focus:before:bg-linear-to-r group-focus:before:from-rose-300 group-focus:before:via-indigo-300 group-focus:before:to-sky-300  before:transition-all before:duration-300 before:w-0 group-hover:before:w-[110%]! group-focus:before:w-[110%]!">
+              <span
+                class="relative text-white group-hover:text-gray-950 font-light group-hover:font-semibold group-focus:font-semibold underline group-hover:no-underline group-focus:no-underline">
+                more tools...
+              </span>
+            </span>
+          </a>
+        </span>
+      </div>
+    </nav>
+  </header>
+
+  <main id="app" class="grow flex">
+    <div class="flex flex-col basis-full gap-4 max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="main-inner"
+      :class="isPWA ? 'mt-1' : 'mt-10'">
+      <div
+        class="group flex flex-col gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
+
+        <div v-for="selectCurrency, idx in selectedCurrencies.slice(0, showCnt)" class="flex gap-2">
+          <button @click="onShowList(idx)" :data-tooltip-target="'select-label-tooltip' + idx"
+            data-tooltip-placement="bottom"
+            class="flex gap-2 items-center bg-zinc-800/50 hover:bg-zinc-100/10 focus:bg-zinc-100/10 text-zinc-400/80 hover:text-rose-300 focus:text-rose-300 not-disabled:cursor-pointer focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 p-2 rounded-md whitespace-nowrap border border-dashed border-white/5 hover:border-white/30 focus:border-white/30"
+            :data-dropdown-toggle="'currencies-list-' + idx" data-dropdown-placement="bottom-start">
+            <span class="rounded-xs fi" :class="'fi-' + getCurrencyByKey(selectCurrency.key).flag"></span>
+            <span class="font-mono">
+              {{ selectCurrency.key }}
+            </span>
+          </button>
+
+          <div :id="'select-label-tooltip' + idx" role="tooltip"
+            class="absolute z-10 invisible px-3 py-2 text-sm text-zinc-400/80 bg-zinc-900 rounded-md shadow-xs opacity-0 tooltip border border-white/12 transition-opacity duration-300 \">
+            <span>{{ getCurrencyByKey(selectCurrency.key).name }}</span>
+          </div>
+
+          <input type="text" :id="'select-currency-val-' + idx" v-model="selectCurrency.val"
+            :readonly="isPWA ? true : null"
+            :class="isPWA ? 'not-[.pwa-focus]:outline-none outline-1 outline-rose-300': 'focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300'"
+            @change="updateSelectCurrencies(selectCurrency.key)" @click="setFocusPWA(idx)"
+            class="currency-val w-full p-2 bg-zinc-800/50 text-white rounded-md font-mono border border-dashed border-white/5 scheme-dark"
+            placeholder="input number in decimal form...">
+          </input>
+
+          <div :id="'currencies-list-' + idx"
+            class="hidden rounded-md border border-white/12 flex flex-col bg-zinc-900 p-1 z-50" @keyup.esc="closeList">
+            <div class="flex gap-2 items-center p-2 border-b border-dashed border-white/5 w-full text-zinc-200/80">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" class="focus:outline-none" v-model="currencyKeyword" :id="'currencyKeyword-' + idx"
+                placeholder="search currency...">
+            </div>
+            <div class="overflow-y-auto sm:w-100 max-w-screen h-52 scheme-dark" :id="'true-currencies-list-' + idx">
+              <div v-for="currency in displayCurrenciesLists[idx]" @click="changeCurrency(currency, idx)"
+                :id="currency.key === selectedCurrencies[idx].key ? 'selected-currency-' + idx : null"
+                class="flex justify-between hover:bg-zinc-800/75 hover:text-rose-300 border not-[.focus-tz]:border-transparent border-rose-300/20 text-zinc-200/80 p-2 rounded-sm cursor-pointer">
+                <span class="flex gap-3 items-center">
+                  <span class="rounded-xs fi" :class="'fi-' + currency.flag"></span>
+                  <span>{{ currency.name }}</span>
+                  <span class="font-mono text-zinc-500/80">{{ currency.key }}</span>
+                </span>
+                <i v-if="isSelected(currency.key)" class="fa-solid fa-check"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button v-if="(showCnt < selectedCurrencies.length) && !isPWA" @click="addRow"
+          data-tooltip-target="add-button-tooltip" data-tooltip-placement="bottom"
+          class="flex gap-2 justify-center bg-zinc-800/50 hover:bg-zinc-100/10 focus:bg-zinc-100/10 text-zinc-400/80 hover:text-rose-300 focus:text-rose-300 not-disabled:cursor-pointer focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 p-2 rounded-md whitespace-nowrap border border-dashed border-white/5 hover:border-rose-300/30 focus:border-rose-300/30">
+          +
+        </button>
+
+        <div id="add-button-tooltip" role="tooltip"
+          class="absolute z-10 invisible px-3 py-2 text-sm text-zinc-400/80 bg-zinc-900 rounded-md shadow-xs opacity-0 tooltip border border-white/12 transition-opacity duration-300">
+          <span>Add new currency reference </span>
+          <span class="bg-zinc-800 text-zinc-200 rounded-md px-1.5 border border-white/30">N</span>
+          <br class="md:hidden">
+          <span> (Reduce reference with </span>
+          <span class="bg-zinc-800 text-zinc-200 rounded-md px-1.5 border border-white/30">D</span>
+          <span>)</span>
+        </div>
+
+        <div class="flex justify-end">
+          <span class="text-xs">
+            <i class="fa-solid fa-rotate me-1 text-zinc-400/80"></i>
+            <span class=" text-rose-300">{{ lastUpdated }}</span>
+          </span>
+        </div>
+      </div>
+
+      <div v-if="!isPWA" class="text-zinc-400/50 ms-3 leading-6">
+        <i class="fa-solid fa-circle-info text-xs me-1"></i>
+        <span>Tips: input support
+          <span class="font-bold">operations</span>
+          such as
+          <span class="font-mono bg-zinc-800/50 rounded-md px-2 border border-white/10 whitespace-nowrap"> 100 * (10 -
+            5) / 7 =</span>
+        </span>
+      </div>
+
+      <div v-if="isPWA"
+        class="grid grid-cols-4 gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5 grow">
+        <button v-for="btn in pwaCalculatorBtn" @click="calculatorClick(btn.key)"
+          :class="(btn.key === '0' ? 'col-span-2' : null) + (/^[\.\d]+$/.test(btn.key) ? ' bg-zinc-700/50' : ( /^[/\*+-=]+$/.test(btn.key) ? ' bg-amber-500' : ' bg-zinc-600/80'))"
+          class="text-center font-black text-zinc-100 focus:text-white focus:outline-1 focus:outline-zinc-100/80 p-2 rounded-md whitespace-nowrap">
+          <i v-if="btn.icon" :class="btn.icon"></i>
+          <span v-else>{{ btn.key }}</span>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer" class="py-4">
+    <div class="max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="footer-inner" :class="isPWA ? 'mt-2' : 'mt-8'">
+      <div class="grid grid-cols-1 gap-6">
+        <div v-if="!isPWA" class="foot-splitter w-[60%] sm:w-72 mx-auto">
+          <div class="flex justify-between text-2xl text-zinc-500/50">
+            <span class="font-mono">*</span>
+            <span class="font-mono">*</span>
+            <span class="font-mono">*</span>
+          </div>
+        </div>
+        <div v-if="!isPWA" class="flex flex-wrap justify-center gap-4">
+          <a href="https://github.com/luswdev/utils-box" target="_blank"
+            class="flex justify-between place-items-center gap-2 font-light px-4 py-3 rounded-xl bg-zinc-900/50 text-zinc-200 border bg-zinc-200/5 border-zinc-100/50 hover:border-zinc-100 hover:bg-zinc-200/10 hover:shadow-[0_0_20px] hover:shadow-zinc-200/10 hover:text-zinc-100 focus:border-zinc-100 focus:bg-zinc-200/10 focus:shadow-[0_0_20px] focus:shadow-zinc-200/10 focus:text-zinc-100 cursor-pointer transition-all">
+            <i class="fa-brands fa-github"></i>
+            <span class="grow text-center">Leave a Issue</span>
+          </a>
+          <a href="https://ko-fi.com/luswdev" target="_blank"
+            class="flex justify-between place-items-center gap-2 font-light px-4 py-3 rounded-xl text-rose-300 bg-rose-400/5 border border-rose-300/50 hover:border-rose-300 hover:bg-rose-400/10 hover:shadow-[0_0_20px] hover:shadow-rose-400/10 hover:text-zinc-100 focus:border-rose-300 focus:bg-rose-400/10 focus:shadow-[0_0_20px] focus:shadow-rose-400/10 focus:text-zinc-100 cursor-pointer transition-all">
+            <i class="fa-regular fa-heart"></i>
+            <span class="grow text-center">Sponsor Us</span>
+          </a>
+          <a href="mailto:info@lusw.dev" target="_blank"
+            class="flex justify-between place-items-center gap-2 font-light px-4 py-3 rounded-xl text-sky-300 bg-sky-400/5 border border-sky-300/50 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px] hover:shadow-sky-400/10 hover:text-zinc-100 focus:border-sky-300 focus:bg-sky-400/10 focus:shadow-[0_0_20px] focus:shadow-sky-400/10 focus:text-zinc-100 cursor-pointer transition-all">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="grow text-center">Contact Us</span>
+          </a>
+        </div>
+        <span id="vercount_value_page_pv" class="hidden">-1</span>
+        <div v-if="!isPWA" id="visitor-container" class="font-bold gap-0.5 inline-flex justify-center text-zinc-500/60">
+        </div>
+        <div class="text-center text-sm text-zinc-500/60 font-light">
+          &copy; {{ new Date().getFullYear() }} LuSkywalker {{ version }}. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/scripts/isPWA.js?v=2605302212"></script>
+  <script src="/scripts/visitor.js?v=2605132348"></script>
+  <script src="/scripts/notification.js?v=2605132339"></script>
+  <script src="scripts/currencies.js?v=2605301849"></script>
+  <script src="scripts/main.js?v=2605302322"></script>
+</body>
+
+</html>

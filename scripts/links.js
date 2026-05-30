@@ -8,6 +8,12 @@ const LINKS = [
     shadow: 'hover:not-[.disabled]:shadow-fuchsia-400/10 focus:not-[.disabled]:shadow-fuchsia-400/10',
     groups: [
       {
+        update: '2026-05-30',
+        title: 'Currency Converter',
+        description: 'Convert currencies with multi selected.',
+        url: 'currency'
+      },
+      {
         update: '',
         title: 'Unit Converter',
         description: 'Convert between different units of measurement.',
@@ -88,10 +94,10 @@ const LINKS = [
         url: ''
       },
       {
-        update: '',
+        update: '2026-05-15',
         title: 'Binary Viewer',
         description: 'View and edit binary data.',
-        url: ''
+        url: 'binary'
       },
       {
         update: '',
