@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=4">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=4">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=4">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest?v=2">
+  <link rel="manifest" href="assets/site.webmanifest?v=2">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,7 @@
 
   <script defer src="https://events.vercount.one/js"></script>
 
-  <link rel="stylesheet" href="/styles/main.css?v=2605141426">
+  <link rel="stylesheet" href="/styles/main.css?v=2605310146">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TXXFD9KYK"></script>
@@ -62,22 +62,22 @@
       html,
       body {
         overscroll-behavior-y: contain;
-        touch-action:none;
+        touch-action: none;
       }
     }
   </style>
 </head>
 
-<body class="flex flex-col bg-zinc-950 text-white min-h-screen leading-none">
+<body class="flex flex-col gap-1 bg-zinc-950 text-white min-h-screen leading-none">
   <header id="header">
-    <nav class="w-full" :class="isPWA ? 'mt-1' : 'mt-10'">
-      <div class="max-w-screen-lg flex flex-col justify-between mx-auto p-4 h-16">
+    <nav class="w-full" :class="isPWA ? null : 'mt-9'">
+      <div class="max-w-screen-lg flex flex-col justify-between mx-auto" :class="isPWA ? 'px-4 py-2' : 'p-4 h-16'">
         <h1 class="flex font-bold" :class="isPWA ? 'text-xl justify-start' : 'text-4xl justify-center'">
           <span class="tracking-[-0.125rem] font-mono text-zinc-400">
             >_
           </span>
-          <span
-            class="ps-2 pb-1 whitespace-nowrap bg-linear-to-r from-rose-300 via-indigo-300 to-sky-300 bg-clip-text text-transparent font-mono">
+          <span :class="isPWA ? 'text-zinc-100 font-title' : 'ps-2 pb-1 bg-linear-to-r from-rose-300 via-indigo-300 to-sky-300 bg-clip-text text-transparent font-mono'"
+            class="whitespace-nowrap">
             Currency
           </span>
         </h1>
@@ -98,14 +98,15 @@
 
   <main id="app" class="grow flex">
     <div class="flex flex-col basis-full gap-4 max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="main-inner"
-      :class="isPWA ? 'mt-1' : 'mt-10'">
-      <div
-        class="group flex flex-col gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5">
+      :class="isPWA ? null : 'mt-9'">
+      <div :class="isPWA ? null : 'sm:px-7 sm:py-6 px-4 py-5 border border-white/10 bg-zinc-900/50'"
+        class="group flex flex-col gap-2 rounded-2xl">
 
         <div v-for="selectCurrency, idx in selectedCurrencies.slice(0, showCnt)" class="flex gap-2">
           <button @click="onShowList(idx)" :data-tooltip-target="'select-label-tooltip' + idx"
             data-tooltip-placement="bottom"
-            class="flex gap-2 items-center bg-zinc-800/50 hover:bg-zinc-100/10 focus:bg-zinc-100/10 text-zinc-400/80 hover:text-rose-300 focus:text-rose-300 not-disabled:cursor-pointer focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 p-2 rounded-md whitespace-nowrap border border-dashed border-white/5 hover:border-white/30 focus:border-white/30"
+            :class="isPWA ? ' bg-zinc-700/50 hover:outline-2 hover:outline-rose-300 focus:outline-1 focus:outline-rose-300' : 'bg-zinc-800/50 border-dashed focus:outline-none focus:shadow-[0_0_0.25rem] focus:shadow-rose-300 border border-white/5 hover:border-white/30 focus:border-white/30'"
+            class="flex gap-2 items-center hover:bg-zinc-100/10 focus:bg-zinc-100/10 text-zinc-400/80 hover:text-rose-300 focus:text-rose-300 not-disabled:cursor-pointer p-2 rounded-md whitespace-nowrap"
             :data-dropdown-toggle="'currencies-list-' + idx" data-dropdown-placement="bottom-start">
             <span class="rounded-xs fi" :class="'fi-' + getCurrencyByKey(selectCurrency.key).flag"></span>
             <span class="font-mono">
@@ -194,11 +195,11 @@
         </span>
       </div>
 
-      <div v-if="isPWA"
-        class="grid grid-cols-4 gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 sm:px-7 sm:py-6 px-4 py-5 grow">
+      <div v-if="isPWA" :class="isPWA ? null : 'sm:px-7 sm:py-6 px-4 py-5 border border-white/10 bg-zinc-900/50'"
+        class="grid grid-cols-4 gap-2 rounded-2xl grow">
         <button v-for="btn in pwaCalculatorBtn" @click="calculatorClick(btn.key)"
-          :class="(btn.key === '0' ? 'col-span-2' : null) + (/^[\.\d]+$/.test(btn.key) ? ' bg-zinc-700/50' : ( /^[/\*+-=]+$/.test(btn.key) ? ' bg-amber-500' : ' bg-zinc-600/80'))"
-          class="text-center font-black text-zinc-100 focus:text-white focus:outline-1 focus:outline-zinc-100/80 p-2 rounded-md whitespace-nowrap">
+          :class="(btn.key === '0' ? 'col-span-2 ' : ' ') + btn.background"
+          class="text-center text-xl font-black text-zinc-100 focus:text-white focus:outline-2 focus:outline-zinc-100/80 p-2 rounded-4xl whitespace-nowrap">
           <i v-if="btn.icon" :class="btn.icon"></i>
           <span v-else>{{ btn.key }}</span>
         </button>
@@ -207,16 +208,16 @@
   </main>
 
   <footer id="footer" class="py-4">
-    <div class="max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0" id="footer-inner" :class="isPWA ? 'mt-2' : 'mt-8'">
+    <div v-if="!isPWA" class="max-w-screen-lg mx-auto px-3 sm:p-6 xl:p-0 mt-8" id="footer-inner">
       <div class="grid grid-cols-1 gap-6">
-        <div v-if="!isPWA" class="foot-splitter w-[60%] sm:w-72 mx-auto">
+        <div class="foot-splitter w-[60%] sm:w-72 mx-auto">
           <div class="flex justify-between text-2xl text-zinc-500/50">
             <span class="font-mono">*</span>
             <span class="font-mono">*</span>
             <span class="font-mono">*</span>
           </div>
         </div>
-        <div v-if="!isPWA" class="flex flex-wrap justify-center gap-4">
+        <div class="flex flex-wrap justify-center gap-4">
           <a href="https://github.com/luswdev/utils-box" target="_blank"
             class="flex justify-between place-items-center gap-2 font-light px-4 py-3 rounded-xl bg-zinc-900/50 text-zinc-200 border bg-zinc-200/5 border-zinc-100/50 hover:border-zinc-100 hover:bg-zinc-200/10 hover:shadow-[0_0_20px] hover:shadow-zinc-200/10 hover:text-zinc-100 focus:border-zinc-100 focus:bg-zinc-200/10 focus:shadow-[0_0_20px] focus:shadow-zinc-200/10 focus:text-zinc-100 cursor-pointer transition-all">
             <i class="fa-brands fa-github"></i>
@@ -234,20 +235,21 @@
           </a>
         </div>
         <span id="vercount_value_page_pv" class="hidden">-1</span>
-        <div v-if="!isPWA" id="visitor-container" class="font-bold gap-0.5 inline-flex justify-center text-zinc-500/60">
+        <div id="visitor-container" class="font-bold gap-0.5 inline-flex justify-center text-zinc-500/60">
         </div>
         <div class="text-center text-sm text-zinc-500/60 font-light">
-          &copy; {{ new Date().getFullYear() }} LuSkywalker {{ version }}. All rights reserved.
+          &copy; {{ new Date().getFullYear() }} <a href="https://lusw.dev" target="_blank" class="underline hover:text-zinc-200">LuSkywalker</a> {{ version }}. All rights reserved.
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="/scripts/isPWA.js?v=2605302212"></script>
+  <script src="/scripts/inlineSVG.min.js"></script>
+  <script src="/scripts/isPWA.js?v=2605311324"></script>
   <script src="/scripts/visitor.js?v=2605132348"></script>
   <script src="/scripts/notification.js?v=2605132339"></script>
-  <script src="scripts/currencies.js?v=2605301849"></script>
-  <script src="scripts/main.js?v=2605302322"></script>
+  <script src="scripts/currencies.js?v=2605310316"></script>
+  <script src="scripts/main.js?v=2605312213"></script>
 </body>
 
 </html>

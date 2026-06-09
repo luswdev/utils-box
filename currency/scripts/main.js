@@ -34,25 +34,25 @@ createApp({
       currencyKeyword: '',
       currenciesTable: undefined,
       pwaCalculatorBtn: [
-        { key: 'C', 'icon': '' },
-        { key: 'B', 'icon': 'fa-solid fa-delete-left' },
-        { key: 'P', 'icon': 'fa-solid fa-percent' },
-        { key: '/', 'icon': 'fa-solid fa-divide' },
-        { key: '7', 'icon': '' },
-        { key: '8', 'icon': '' },
-        { key: '9', 'icon': '' },
-        { key: '*', 'icon': 'fa-solid fa-xmark' },
-        { key: '4', 'icon': '' },
-        { key: '5', 'icon': '' },
-        { key: '6', 'icon': '' },
-        { key: '-', 'icon': 'fa-solid fa-minus' },
-        { key: '1', 'icon': '' },
-        { key: '2', 'icon': '' },
-        { key: '3', 'icon': '' },
-        { key: '+', 'icon': 'fa-solid fa-plus' },
-        { key: '0', 'icon': '' },
-        { key: '.', 'icon': '' },
-        { key: 'E', 'icon': 'fa-solid fa-equals' }
+        { key: 'C', background: 'bg-zinc-600/90', 'icon': '' },
+        { key: 'B', background: 'bg-zinc-600/90', 'icon': 'fa-solid fa-delete-left' },
+        { key: 'P', background: 'bg-zinc-600/90', 'icon': 'fa-solid fa-percent' },
+        { key: '/', background: 'bg-amber-500', 'icon': 'fa-solid fa-divide' },
+        { key: '7', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: '8', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: '9', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: '*', background: 'bg-amber-500', 'icon': 'fa-solid fa-xmark' },
+        { key: '4', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: '5', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: '6', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: '-', background: 'bg-amber-500', 'icon': 'fa-solid fa-minus' },
+        { key: '1', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: '2', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: '3', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: '+', background: 'bg-amber-500', 'icon': 'fa-solid fa-plus' },
+        { key: '0', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: '.', background: 'bg-zinc-700/50', 'icon': '' },
+        { key: 'E', background: 'bg-rose-300/90', 'icon': 'fa-solid fa-equals' }
       ],
       pwaCurFocus: 0,
     }
@@ -103,12 +103,20 @@ createApp({
     },
     evalVal: function (str) {
       try {
-        return eval(str.replace(/[^\*\\(\)/\.0-9+-]*/g, ''))
+        let res = eval(str.replace(/[^\*\\(\)/\.0-9+-]*/g, ''))
+        if (isNaN(res)) {
+          return 0
+        }
+        return Math.max(res, 0)
       } catch {
-        return 1000
+        return 0
       }
     },
     updateSelectCurrencies: function (triggered) {
+      if (!this.currenciesTable) {
+        return
+      }
+
       const triggeredItem = this.selectedCurrencies.find((elem) => elem.key === triggered)
       const triggered2Base = this.currenciesTable.rates[triggeredItem.key]
       const triggeredVal = this.evalVal(triggeredItem.val)
@@ -192,6 +200,14 @@ createApp({
 
       document.getElementById(`select-currency-val-${idx}`).classList.add('pwa-focus')
 
+      if (/^[/\*+-]+$/.test(this.selectedCurrencies[this.pwaCurFocus].val.at(-1))) {
+        this.selectedCurrencies[this.pwaCurFocus].val = this.selectedCurrencies[this.pwaCurFocus].val.slice(0, -1)
+      }
+
+      if (/[/\*+-]+/.test(this.selectedCurrencies[this.pwaCurFocus].val)) {
+        this.updateSelectCurrencies(this.selectedCurrencies[this.pwaCurFocus].key)
+      }
+
       this.pwaCurFocus = idx
     },
     calculatorClick: function (key) {
@@ -207,27 +223,43 @@ createApp({
         case '7':
         case '8':
         case '9':
+          if (this.selectedCurrencies[this.pwaCurFocus].val === '0') {
+            this.selectedCurrencies[this.pwaCurFocus].val = ''
+          }
+          this.selectedCurrencies[this.pwaCurFocus].val += key
+          break
         case '+':
         case '-':
         case '*':
         case '/':
-        case '.':
-        case '.':
+          if (/^[/\*+-]+$/.test(this.selectedCurrencies[this.pwaCurFocus].val.at(-1))) {
+            this.selectedCurrencies[this.pwaCurFocus].val = this.selectedCurrencies[this.pwaCurFocus].val.slice(0, -1)
+          }
           this.selectedCurrencies[this.pwaCurFocus].val += key
           break
+        case '.':
+          if (this.selectedCurrencies[this.pwaCurFocus].val.split(/[/\*+-]/).pop().indexOf('.') === -1) {
+            this.selectedCurrencies[this.pwaCurFocus].val += key
+          }
+          break
         case 'C':
-          this.selectedCurrencies[this.pwaCurFocus].val = '1000'
+          this.selectedCurrencies[this.pwaCurFocus].val = '0'
           needUpdate = true
           break
         case 'B':
           this.selectedCurrencies[this.pwaCurFocus].val = this.selectedCurrencies[this.pwaCurFocus].val.slice(0, -1)
-          needUpdate = true
+          if (!this.selectedCurrencies[this.pwaCurFocus].val.length) {
+            this.selectedCurrencies[this.pwaCurFocus].val = '0'
+          }
           break
         case 'P':
           this.selectedCurrencies[this.pwaCurFocus].val = (this.evalVal(this.selectedCurrencies[this.pwaCurFocus].val) / 10).toString()
           needUpdate = true
           break
         case 'E':
+          if (/^[/\*+-]+$/.test(this.selectedCurrencies[this.pwaCurFocus].val.at(-1))) {
+            this.selectedCurrencies[this.pwaCurFocus].val = this.selectedCurrencies[this.pwaCurFocus].val.slice(0, -1)
+          }
           needUpdate = true
           break
       }
@@ -306,7 +338,7 @@ createApp({
   data: function () {
     return {
       isPWA: IS_PWA,
-      version: 'v1.0.0',
+      version: 'v1.0.3',
     }
   },
 }).mount('#footer')
