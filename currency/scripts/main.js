@@ -81,6 +81,14 @@ createApp({
     }
   },
   methods: {
+    getCurrencySymbol: function (currencyCode, locale = 'en-US') {
+      return (0).toLocaleString(locale, {
+        style: 'currency',
+        currency: currencyCode,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).replace(/\d/g, '').trim();
+    },
     getCurrencyByKey: function (key) {
       return this.currencies.find((currency) => currency.key === key)
     },
@@ -272,6 +280,17 @@ createApp({
     })
 
     this.setFocusPWA(0)
+
+    inlineSVG.init({
+      svgSelector: 'img.svg',
+      initClass: 'js-inlinesvg',
+    })
+  },
+  updated: function () {
+    inlineSVG.init({
+      svgSelector: 'img.svg',
+      initClass: 'js-inlinesvg',
+    })
   },
 }).mount('#app')
 
